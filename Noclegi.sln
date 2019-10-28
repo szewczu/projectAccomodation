@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noclegi", "Noclegi.csproj", "{981BF5A4-6F16-4348-BE90-C21FC9BA248A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{981BF5A4-6F16-4348-BE90-C21FC9BA248A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{981BF5A4-6F16-4348-BE90-C21FC9BA248A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{981BF5A4-6F16-4348-BE90-C21FC9BA248A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{981BF5A4-6F16-4348-BE90-C21FC9BA248A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B472068E-AFBB-468B-8935-1F54F699EF77}
+	EndGlobalSection
+EndGlobal
