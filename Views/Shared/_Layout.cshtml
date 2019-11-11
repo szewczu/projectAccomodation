@@ -9,26 +9,29 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Noclegi</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+
+        <nav class="navbar navbar-expand-lg navbar-light navbar-custom ">
+            <!--fixed-top scrolling-navbar-->
+            <!-- <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><input type="image" src="~/logo_placeholder.png" alt="Noclegi" style="text-align:center"></a>
+     -->
+            <a class="navbar-link custom-title col-1" asp-area="" asp-controller="Home" asp-action="Index">NOCLEGI</a>
+            <button class="navbar-toggler btn-sm" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-dark disabled" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse col-1" id="navbarNavAltMarkup">
+                <div class=" ml-auto mr-1">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,8 +40,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - Noclegi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container footerStyle">
+            &copy; 2019 - Noclegi - <a style="color:aqua" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
