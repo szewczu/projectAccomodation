@@ -1,7 +1,7 @@
 ﻿@page
 @model ManageAccount
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Profil";
     Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
 }
 
@@ -20,7 +20,7 @@
                 <input asp-for="InputInformation.PhoneNumber" class="form-control" />
                 <span asp-validation-for="InputInformation.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Zapisz</button>
         </form>
     </div>
     <div class="col-md-6">
@@ -40,7 +40,7 @@
                 else
                 {
                     <input asp-for="Email" class="form-control" disabled />
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" onclick="" class="btn btn-link">Send verification email</button>
+                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" onclick="" class="btn btn-link">Wyślij maila weryfikującego</button>
                 }
             </div>
             <div class="form-group">
@@ -48,7 +48,7 @@
                 <input asp-for="InputEmail.NewEmail" class="form-control" />
                 <span asp-validation-for="InputEmail.NewEmail" class="text-danger"></span>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-primary">Change email</button>
+            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-primary">Zmień email</button>
         </form>
     </div>
 </div>

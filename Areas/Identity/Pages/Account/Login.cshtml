@@ -24,7 +24,7 @@
                     <div class="col-md-6 separator">
                         <section>
                             <form id="account" method="post">
-                                <h4>Local account</h4>
+                                <h4>Konto lokalne</h4>
                                 <hr />
                                 <div asp-validation-summary="All" class="text-danger"></div>
                                 <div class="form-group">
@@ -46,11 +46,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <button type="submit" class="btn btn-primary btn-block ">Log in</button>
+                                    <button type="submit" class="btn btn-primary btn-block ">Zaloguj</button>
                                 </div>
                                 <div class="form-group">
-                                    <a class="btn btn-outline-danger btn-block" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                                    <a class="btn btn-outline-info btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                    <a class="btn btn-outline-danger btn-block" id="forgot-password" asp-page="./ForgotPassword">Zapomniałeś hasła?</a>
+                                    <a class="btn btn-outline-info btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Rejestracj nowego użytkownika</a>
                                     <!--
                                     <p>
                                         <button type="submit" asp-page-handler="SendVerificationEmail" class="btn-link" style="padding:0px;margin:0px;border:0px">Resend email confirmation</button>
@@ -80,7 +80,7 @@
                                             <p>
                                                 @foreach (var provider in Model.ExternalLogins)
                                                 {
-                                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Zaloguj się używając twojego konta od @provider.DisplayName ">@provider.DisplayName</button>
                                                 }
                                             </p>
                                         </div>
