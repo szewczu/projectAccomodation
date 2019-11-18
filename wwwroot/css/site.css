@@ -59,10 +59,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background-color:lightsalmon;
-
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: whitesmoke;
 }
 .footer {
     position: absolute;
@@ -78,15 +77,12 @@ body {
     color:white;
 }
 
-.navbar-custom {
-    background-color: saddlebrown;
-    height: 50px;
-    color: white;
-    font-size: 22px;
-    border-width: 3px;
-    border-bottom-color: black;
-    border-bottom-style: solid;
+.navbar {
+
+    box-shadow:rgba(0,0,0,4) 1px 1px 30px 4px ;
+    color:green;
 }
+
 .custom-title {
     font-size:30px;
     font-weight:bold;
@@ -101,7 +97,8 @@ p.slideText {
 .jumbotron {
     padding: 20px 20px 20px 20px;
     display: inline-block;
-    margin-bottom:-15px;
+    margin-bottom: -15px;
+    background-color: white;
 }
 .separator {
     border-right:1px ridge black;
