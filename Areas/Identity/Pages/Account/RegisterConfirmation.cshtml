@@ -1,0 +1,22 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Rejestracja - informacja o aktywacji konta";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+    <p>
+     Ta aplikacja nie posiada obecnie systemu do wysyłania prawdziwych maili podanych podczas systemu rejestracji. Zobacz   <a href="https://aka.ms/aspaccountconf">ten link</a> aby dowiedzieć się jak skonfigurować wysyłanie maili.
+        Normalnie ta wiadomość zostałaby wysłana:  <a id="confirm-link" href="@Model.EmailConfirmationUrl">Wciśnij tutaj aby aktywować konto w aplikacji Noclegi</a>
+    </p>
+    }
+    else
+    {
+<p>
+       Proszę, sprawdź swoją skrzynkę pocztową.
+</p>
+    }
+}
