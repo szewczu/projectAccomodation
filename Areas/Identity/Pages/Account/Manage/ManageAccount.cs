@@ -31,7 +31,7 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
             _logger = logger;
         }
-
+        [Display(Name = "Nazwa użytkownika")]
         public string Username { get; set; }
 
         public string Email { get; set; }
