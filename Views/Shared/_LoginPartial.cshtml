@@ -5,23 +5,30 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="btn-group">
-        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name!</a>
-
+        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel administracyjny</a>
         <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-            <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Zarządzaj kontem</a>
-            <form class="form-inline dropdown-item " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button class="btn">Wyloguj się</button>
-            </form>
+            <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Użytkownicy</a>
+            <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Ogłoszenia</a>
         </div>
     </div>
-}
-else
-{
-<div class="btn-group">
-    <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-    <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-        <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Register" style="display:inline">Rejestracja</a>
-        <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Login" style="display:inline">Logowanie</a>
-    </div>
+
+        <div class="btn-group">
+            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name!</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+                <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Zarządzaj kontem</a>
+                <form class="form-inline dropdown-item " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button class="btn">Wyloguj się</button>
+                </form>
+            </div>
         </div>
-    }
+        }
+        else
+        {
+        <div class="btn-group">
+            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+                <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Register" style="display:inline">Rejestracja</a>
+                <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Login" style="display:inline">Logowanie</a>
+            </div>
+        </div>
+        }
