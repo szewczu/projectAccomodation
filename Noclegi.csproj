@@ -14,12 +14,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="System.Linq.Dynamic" Version="1.0.7" />
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Pages\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
