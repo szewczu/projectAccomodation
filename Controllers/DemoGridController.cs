@@ -8,7 +8,7 @@ using System.Linq.Dynamic;
 using Noclegi.Data;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860  
 
-namespace ExampleGrid.Controllers
+namespace Noclegi.Controllers
 {
     public class DemoGridController : Controller
     {
