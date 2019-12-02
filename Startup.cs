@@ -34,6 +34,13 @@ namespace Noclegi
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+
+                facebookOptions.AppId = "519255028804100";
+                facebookOptions.AppSecret = "d168251d94ae7c73aee0bb9410873e55";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +64,7 @@ namespace Noclegi
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
