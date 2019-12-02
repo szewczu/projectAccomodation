@@ -30,17 +30,32 @@
                 <input asp-for="Input.Surname" class="form-control" />
                 <span asp-validation-for="Input.Surname" class="text-danger"></span>
             </div>
+            <!--
             <div class="form-group">
                 <label asp-for="Input.Gender"></label>
                 <input asp-for="Input.Gender" class="form-control" />
                 <span asp-validation-for="Input.Gender" class="text-danger"></span>
             </div>
+                -->
             <div class="form-group">
                 <label asp-for="Input.DateOfBirth"></label>
                 <input asp-for="Input.DateOfBirth" class="form-control" />
                 <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
             </div>
-          
+            <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text"  id="genderList">Options</label>
+                </div>
+                <select itemid="Input.Gender" onchange="SelectGender" class="custom-select" id="genderList" asp-for="Input.Gender" >
+                    <option value="Other" selected>Inna</option>
+                    <option value="Male" >Mężczyzna</option>
+                    <option value="Female">Kobieta</option>
+                </select>
+            </div>
+                </div>
+
+
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
