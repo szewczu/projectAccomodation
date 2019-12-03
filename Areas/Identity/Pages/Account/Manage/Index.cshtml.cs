@@ -12,8 +12,6 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        //     private readonly UserManager<IdentityUser> _userManager;
-        //     private readonly SignInManager<IdentityUser> _signInManager;
 
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -64,7 +62,6 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             return cnn;
         }
 
-
         public Object GetSingleValueFromSqlCommand(string query)
         {
             SqlConnection cnn = CreateSqlConnection();
@@ -77,9 +74,8 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             }
             else
             {
-                result = command.ExecuteScalar();
+              return  command.ExecuteScalar();
             }
-                return result;
         }
 
         public IActionResult OnPost(IdentityUser user)
@@ -88,8 +84,9 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             cnn.Open();
             var name= Input.Name;
             var surname = Input.Surname;
-            var dataOfBirth = Input.DateOfBirth;
+            var dateOfBirth = Input.DateOfBirth;
             var phoneNumber = Input.PhoneNumber;
+            var userName = HttpContext.User.Identity.Name;
             var gender = "Other";
             if (string.IsNullOrEmpty(Input.Gender) || Input.Gender != "Male" && Input.Gender != "Female")
             {
@@ -100,11 +97,12 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
                  gender = Input.Gender;
             }
 
-            var userName = HttpContext.User.Identity.Name;
+           string dateOfBirthString =  dateOfBirth.ToString("yyyy-MM-dd");
+
             string  sql = $"Update AspNetUsers " +
                 $"set  PhoneNumber = \'{phoneNumber}\' ," +
                 $"Name = \'{name}\'," +
-                $"DateOfBirth= \'{dataOfBirth}\'," +
+                $"DateOfBirth= \'{dateOfBirthString}\'," +
                 $"Gender= \'{gender}\'," +
                 $"Surname= \'{surname}\'" +
                 $"where UserName = \'{userName}\';";
@@ -125,8 +123,11 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
              var phoneNumber = GetSingleValueFromSqlCommand($"Select PhoneNumber from AspNetUsers where UserName = \'{userName}\'");
             var id = GetSingleValueFromSqlCommand($"Select Id from AspNetUsers where UserName = \'{userName}\'");
             var gender = GetSingleValueFromSqlCommand($"Select Gender from AspNetUsers where UserName = \'{userName}\'");
-            var dataOfBirth= GetSingleValueFromSqlCommand($"Select DateOfBirth from AspNetUsers where UserName = \'{userName}\'");
-
+            var dateOfBirth= GetSingleValueFromSqlCommand($"Select DateOfBirth from AspNetUsers where UserName = \'{userName}\'");
+            if(dateOfBirth == null)
+            {
+                dateOfBirth = DateTime.MinValue;
+            }
             Input = new InputModel
             {
                 PhoneNumber = (string)phoneNumber,
@@ -134,54 +135,11 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
                 Surname = (string)surname,
                 Name = (string)name,
                 Gender = (string)gender,
-                DateOfBirth = (DateTime)dataOfBirth
+               DateOfBirth = (DateTime)dateOfBirth
+ 
             };
             return Page();
         }
 
-/*
-        public async Task<IActionResult> OnGetAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            await LoadAsync(user);
-            return Page();
-        }
-        
-  public async Task<IActionResult> OnPostAsync()
-  {
-      var user = await _userManager.GetUserAsync(User);
-
-      if (user == null)
-      {
-          return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-      }
-
-      if (!ModelState.IsValid)
-      {
-          await LoadAsync(user);
-          return Page();
-      }
-
-      var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-      if (Input.PhoneNumber != phoneNumber)
-      {
-          var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-          if (!setPhoneResult.Succeeded)
-          {
-              var userId = await _userManager.GetUserIdAsync(user);
-              throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
-          }
-      }
-
-      await _signInManager.RefreshSignInAsync(user);
-      StatusMessage = "Your profile has been updated";
-      return RedirectToPage();
-  }
-  */
     }
 }
