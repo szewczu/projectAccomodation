@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<head>  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+    <div class="jumbotron text-center shadow-lg col-12">
+    <h1>Zarządzaj swoim kontem</h1>
+    <hr />
+    <div class="row">
+        <div class="col-3 separator">
+            <partial name="_ManageNav" />
+        </div>
+
+        <div class="col-9">
+            @RenderBody()
+        </div>
+    </div>
+    </div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
