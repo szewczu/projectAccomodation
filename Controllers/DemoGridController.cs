@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Noclegi.Models;
-using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
 using Noclegi.Data;
+using System.Diagnostics;
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860  
 
 namespace Noclegi.Controllers
@@ -21,11 +23,14 @@ namespace Noclegi.Controllers
         // GET: /<controller>/  
         public IActionResult ShowGrid()
         {
+            
             return View();
+
         }
 
         public IActionResult LoadData()
         {
+            Debug.WriteLine("--------------------load data test");
             try
             {
                 var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
@@ -48,6 +53,9 @@ namespace Noclegi.Controllers
                 // Getting all Customer data  
                 var customerData = (from tempcustomer in _context.IdentityUser
                                     select tempcustomer);
+                
+
+
 
                 //Sorting  
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
