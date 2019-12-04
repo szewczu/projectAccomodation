@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a type="button" class=" nav-link text-dark"  onclick="openNav()">Menu ogłoszeń</a>
+ }
+

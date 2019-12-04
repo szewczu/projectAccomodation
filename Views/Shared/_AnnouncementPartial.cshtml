@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+        <a class="nav-link text-dark" role="button" asp-area="Announcement" asp-page="/Index" style="display:block" >Ogłoszenia</a>
+        <a class="nav-link text-dark" role="button" asp-area="Announcement" asp-page="/CreateAnnouncement" style="display:block" >Dodaj ogłoszenie</a>
+
+}
+
