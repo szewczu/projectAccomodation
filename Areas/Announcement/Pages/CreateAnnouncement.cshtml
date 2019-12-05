@@ -6,3 +6,94 @@
 }
 
 <h1>Dodaj ogłoszenie</h1>
+
+
+
+
+
+<div class="container">
+        
+    <form action="#" method="post">
+        <div class="form-group">
+            <label asp-for="Input.Title">Title</label>
+            <input asp-for="Input.Title" type="text">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Description" >Description</label>
+            <input  asp-for="Input.Description" type="text">
+        </div>
+
+        <div class="form-group">
+            <label   asp-for="Input.StartDate" >Start Date</label>
+            <input   asp-for="Input.StartDate" type="date">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.EndDate" >End Date</label>
+            <input  asp-for="Input.EndDate" type="date">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Price" >Price</label>
+            <input  asp-for="Input.Price" type="number">
+        </div>
+
+        <div class="form-group">
+            <label>Type of advertisement</label>
+            <select class="custom-select"   asp-for="Input.TypeOfAdvertisement" >
+                <option value="Rent" selected>Rent</option>
+                <option value="Looking for">Looking for</option>
+                <option value="Exchange">Exchange</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label  asp-for="Input.PropertyType" >Property type</label>
+            <input  asp-for="Input.PropertyType" type="text">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Floor" >Floor</label>
+            <input  asp-for="Input.Floor" type="number">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Rooms" >Rooms</label>
+            <input  asp-for="Input.Rooms" type="number">
+        </div>
+
+        <h4>Adres</h4>
+
+        <div class="form-group">
+            <label  asp-for="Input.Street" >Street</label>
+            <input  asp-for="Input.Street" type="text">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.City" >City</label>
+            <input  asp-for="Input.City" type="text">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Postcode" >Postcode</label>
+            <input  asp-for="Input.Postcode" type="text">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Province" >Province</label>
+            <input  asp-for="Input.Province" type="text">
+        </div>
+
+        <div class="form-group">
+            <label  asp-for="Input.Country" >Country</label>
+            <input  asp-for="Input.Country" type="text">
+        </div>
+    
+        <button type="submit"a>Save</button>
+    
+    
+    
+    </form>
+</div>
+
