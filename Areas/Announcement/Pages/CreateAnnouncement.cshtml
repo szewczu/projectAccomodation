@@ -6,6 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+ 
+
+
 <h1>Dodaj ogłoszenie</h1>
 
 
@@ -16,93 +19,95 @@
 
     <form action="#" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Input.Tytul">Tytul</label>
-            <input asp-for="Input.Tytul" type="text">
-            <span asp-validation-for="Input.Tytul" class="text-danger"></span>
-        </div>
 
-        <div class="form-group">
-            <label asp-for="Input.Opis">Opis</label>
-            <input asp-for="Input.Opis" type="text">
-            <span asp-validation-for="Input.Opis" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.DataRozpoczecia">Data Rozpoczecia</label>
-            <input asp-for="Input.DataRozpoczecia" type="date">
-            <span asp-validation-for="Input.DataRozpoczecia" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.DataZakonczenia">Data Zakonczenia</label>
-            <input asp-for="Input.DataZakonczenia" type="date">
-            <span asp-validation-for="Input.DataZakonczenia" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.Cena">Cena</label>
-            <input asp-for="Input.Cena" type="number">
-            <span asp-validation-for="Input.Cena" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label>Typ Ogloszenia</label>
-            <select class="custom-select" asp-for="Input.TypOgloszenia">
+        <div class="invisible">
+            <label asp-for="Input.TypeOfAdvertisement"></label>
+            <select class="custom-select" asp-for="Input.TypeOfAdvertisement">
                 <option value="Wynajeme" selected>Wynajme</option>
                 <option value="Szukam">Szukam</option>
-                <option value="Wymienie">Wymienie</option>
+                <option value="Wymienie" >Wymienie</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.PropertyType">Property type</label>
+            <label asp-for="Input.Title"></label>
+            <input asp-for="Input.Title" type="text" >
+            <input asp-for="Input.Title" id="blo" type="text" >
+            <span asp-validation-for="Input.Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.Description"></label>
+            <input asp-for="Input.Description" type="text">
+            <span asp-validation-for="Input.Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.StartDate"></label>
+            <input asp-for="Input.StartDate" type="date">
+            <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.EndDate"></label>
+            <input asp-for="Input.EndDate" type="date">
+            <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.Price"></label>
+            <input asp-for="Input.Price" type="number">
+            <span asp-validation-for="Input.Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.PropertyType"></label>
             <input asp-for="Input.PropertyType" type="text">
             <span asp-validation-for="Input.PropertyType" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.Pietro">Pietro</label>
-            <input asp-for="Input.Pietro" type="number">
-            <span asp-validation-for="Input.Pietro" class="text-danger"></span>
+            <label asp-for="Input.Floor"></label>
+            <input asp-for="Input.Floor" type="number">
+            <span asp-validation-for="Input.Floor" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.Pokoje">Pokoje</label>
-            <input asp-for="Input.Pokoje" type="number">
-            <span asp-validation-for="Input.Pokoje" class="text-danger"></span>
+            <label asp-for="Input.Rooms"></label>
+            <input asp-for="Input.Rooms" type="number">
+            <span asp-validation-for="Input.Rooms" class="text-danger"></span>
         </div>
 
         <h4>Adres</h4>
 
         <div class="form-group">
-            <label asp-for="Input.Ulica">Ulica</label>
-            <input asp-for="Input.Ulica" type="text">
-            <span asp-validation-for="Input.Ulica" class="text-danger"></span>
+            <label asp-for="Input.Street"></label>
+            <input asp-for="Input.Street" type="text">
+            <span asp-validation-for="Input.Street" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.Miasto">Miasto</label>
-            <input asp-for="Input.Miasto" type="text">
-            <span asp-validation-for="Input.Miasto" class="text-danger"></span>
+            <label asp-for="Input.City"></label>
+            <input asp-for="Input.City" type="text">
+            <span asp-validation-for="Input.City" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.KodPocztowy">Kod Pocztowy</label>
-            <input asp-for="Input.KodPocztowy" type="text">
-            <span asp-validation-for="Input.KodPocztowy" class="text-danger"></span>
+            <label asp-for="Input.PostCode"></label>
+            <input asp-for="Input.PostCode" type="text">
+            <span asp-validation-for="Input.PostCode" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.Prowincja">Prowincja</label>
-            <input asp-for="Input.Prowincja" type="text">
-            <span asp-validation-for="Input.Prowincja" class="text-danger"></span>
+            <label asp-for="Input.Province"></label>
+            <input asp-for="Input.Province" type="text">
+            <span asp-validation-for="Input.Province" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.Kraj">Panstwo</label>
-            <input asp-for="Input.Kraj" type="text">
-            <span asp-validation-for="Input.Kraj" class="text-danger"></span>
+            <label asp-for="Input.Country"></label>
+            <input asp-for="Input.Country" type="text">
+            <span asp-validation-for="Input.Country" class="text-danger"></span>
         </div>
 
         <button type="submit" a>Zapisz</button>

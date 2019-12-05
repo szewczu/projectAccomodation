@@ -16,52 +16,62 @@ namespace Noclegi.Areas.Announcement.Pages
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public void bla()
+        {
+            if (Input.TypeOfAdvertisement == "Szukam")
+            {
+                
+            }
+                 
+        }
+
+
 
 
         public class InputModel
         {
 
             [Display(Name = "Tytul")]
-            public string Tytul { get; set; }
+            public string Title { get; set; }
 
             [Display(Name = "Opis")]
-            public string Opis { get; set; }
+            public string Description { get; set; }
 
             [Display(Name = "Data Rozpoczecia")]
-            public DateTime DataRozpoczecia { get; set; }
+            public DateTime StartDate { get; set; }
 
             [Display(Name = "Data Zakonczenia")]
-            public DateTime DataZakonczenia { get; set; }
+            public DateTime EndDate { get; set; }
 
             [Display(Name = "Cena")]
-            public int Cena { get; set; }
+            public int Price { get; set; }
 
             [Display(Name = "Typ Ogloszenia")]
-            public string TypOgloszenia { get; set; }
+            public string TypeOfAdvertisement { get; set; }
 
             [Display(Name = "Property Type")]
             public string PropertyType { get; set; }
 
             [Display(Name = "Pietro")]
-            public int Pietro { get; set; }
+            public int Floor { get; set; }
 
             [Display(Name = "Pokoje")]
-            public int Pokoje { get; set; }
+            public int Rooms { get; set; }
 
             [Display(Name = "Ulica")]
-            public string Ulica { get; set; }
+            public string Street { get; set; }
 
             [Display(Name = "Miasto")]
-            public string Miasto { get; set; }
+            public string City { get; set; }
 
             [Display(Name = "Kod Pocztowy")]
-            public string KodPocztowy { get; set; }
+            public string PostCode { get; set; }
 
             [Display(Name = "Prowincja")]
-            public string Prowincja { get; set; }
+            public string Province { get; set; }
 
             [Display(Name = "Kraj")]
-            public string Kraj { get; set; }
+            public string Country { get; set; }
         }
     }
 }
