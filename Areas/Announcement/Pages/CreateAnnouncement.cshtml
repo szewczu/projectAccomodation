@@ -1,5 +1,6 @@
 ﻿@page
 @model Noclegi.Areas.Announcement.Pages.CreateAnnouncementModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,88 +13,105 @@
 
 
 <div class="container">
-        
+
     <form action="#" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Input.Title">Title</label>
-            <input asp-for="Input.Title" type="text">
+            <label asp-for="Input.Tytul">Tytul</label>
+            <input asp-for="Input.Tytul" type="text">
+            <span asp-validation-for="Input.Tytul" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Description" >Description</label>
-            <input  asp-for="Input.Description" type="text">
+            <label asp-for="Input.Opis">Opis</label>
+            <input asp-for="Input.Opis" type="text">
+            <span asp-validation-for="Input.Opis" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label   asp-for="Input.StartDate" >Start Date</label>
-            <input   asp-for="Input.StartDate" type="date">
+            <label asp-for="Input.DataRozpoczecia">Data Rozpoczecia</label>
+            <input asp-for="Input.DataRozpoczecia" type="date">
+            <span asp-validation-for="Input.DataRozpoczecia" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.EndDate" >End Date</label>
-            <input  asp-for="Input.EndDate" type="date">
+            <label asp-for="Input.DataZakonczenia">Data Zakonczenia</label>
+            <input asp-for="Input.DataZakonczenia" type="date">
+            <span asp-validation-for="Input.DataZakonczenia" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Price" >Price</label>
-            <input  asp-for="Input.Price" type="number">
+            <label asp-for="Input.Cena">Cena</label>
+            <input asp-for="Input.Cena" type="number">
+            <span asp-validation-for="Input.Cena" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label>Type of advertisement</label>
-            <select class="custom-select"   asp-for="Input.TypeOfAdvertisement" >
-                <option value="Rent" selected>Rent</option>
-                <option value="Looking for">Looking for</option>
-                <option value="Exchange">Exchange</option>
+            <label>Typ Ogloszenia</label>
+            <select class="custom-select" asp-for="Input.TypOgloszenia">
+                <option value="Wynajeme" selected>Wynajme</option>
+                <option value="Szukam">Szukam</option>
+                <option value="Wymienie">Wymienie</option>
             </select>
         </div>
-        
+
         <div class="form-group">
-            <label  asp-for="Input.PropertyType" >Property type</label>
-            <input  asp-for="Input.PropertyType" type="text">
+            <label asp-for="Input.PropertyType">Property type</label>
+            <input asp-for="Input.PropertyType" type="text">
+            <span asp-validation-for="Input.PropertyType" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Floor" >Floor</label>
-            <input  asp-for="Input.Floor" type="number">
+            <label asp-for="Input.Pietro">Pietro</label>
+            <input asp-for="Input.Pietro" type="number">
+            <span asp-validation-for="Input.Pietro" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Rooms" >Rooms</label>
-            <input  asp-for="Input.Rooms" type="number">
+            <label asp-for="Input.Pokoje">Pokoje</label>
+            <input asp-for="Input.Pokoje" type="number">
+            <span asp-validation-for="Input.Pokoje" class="text-danger"></span>
         </div>
 
         <h4>Adres</h4>
 
         <div class="form-group">
-            <label  asp-for="Input.Street" >Street</label>
-            <input  asp-for="Input.Street" type="text">
+            <label asp-for="Input.Ulica">Ulica</label>
+            <input asp-for="Input.Ulica" type="text">
+            <span asp-validation-for="Input.Ulica" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.City" >City</label>
-            <input  asp-for="Input.City" type="text">
+            <label asp-for="Input.Miasto">Miasto</label>
+            <input asp-for="Input.Miasto" type="text">
+            <span asp-validation-for="Input.Miasto" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Postcode" >Postcode</label>
-            <input  asp-for="Input.Postcode" type="text">
+            <label asp-for="Input.KodPocztowy">Kod Pocztowy</label>
+            <input asp-for="Input.KodPocztowy" type="text">
+            <span asp-validation-for="Input.KodPocztowy" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Province" >Province</label>
-            <input  asp-for="Input.Province" type="text">
+            <label asp-for="Input.Prowincja">Prowincja</label>
+            <input asp-for="Input.Prowincja" type="text">
+            <span asp-validation-for="Input.Prowincja" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label  asp-for="Input.Country" >Country</label>
-            <input  asp-for="Input.Country" type="text">
+            <label asp-for="Input.Kraj">Panstwo</label>
+            <input asp-for="Input.Kraj" type="text">
+            <span asp-validation-for="Input.Kraj" class="text-danger"></span>
         </div>
-    
-        <button type="submit"a>Save</button>
-    
-    
-    
+
+        <button type="submit" a>Zapisz</button>
+
+
+
     </form>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
