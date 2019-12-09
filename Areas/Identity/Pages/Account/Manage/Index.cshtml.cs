@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using Noclegi.Helpers;
 
 namespace Noclegi.Areas.Identity.Pages.Account.Manage
 {
@@ -54,35 +52,12 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             public DateTime DateOfBirth { get; set; }
 
         }
-        
-        public SqlConnection CreateSqlConnection()
-        {
-            string connectionString = @"Data Source=noclegiDB.mssql.somee.com; user id = aspr1me_SQLLogin_1; pwd = uzputoxk9x";
-            SqlConnection cnn = new SqlConnection(connectionString);
-            return cnn;
-        }
-
-        public Object GetSingleValueFromSqlCommand(string query)
-        {
-            SqlConnection cnn = CreateSqlConnection();
-            cnn.Open();
-            SqlCommand command = new SqlCommand(query, cnn);
-            Object result = null;
-            if(command.ExecuteScalar() == DBNull.Value)
-            {
-                return result;
-            }
-            else
-            {
-              return  command.ExecuteScalar();
-            }
-        }
 
         public IActionResult OnPost(IdentityUser user)
         {
-            var cnn = CreateSqlConnection();
+            var cnn = DatabaseFunctions.CreateSqlConnection();
             cnn.Open();
-            var name= Input.Name;
+            var name = Input.Name;
             var surname = Input.Surname;
             var dateOfBirth = Input.DateOfBirth;
             var phoneNumber = Input.PhoneNumber;
@@ -90,16 +65,16 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             var gender = "Other";
             if (string.IsNullOrEmpty(Input.Gender) || Input.Gender != "Male" && Input.Gender != "Female")
             {
-                 gender = "Other";
+                gender = "Other";
             }
             else
             {
-                 gender = Input.Gender;
+                gender = Input.Gender;
             }
 
-           string dateOfBirthString =  dateOfBirth.ToString("yyyy-MM-dd");
+            string dateOfBirthString = dateOfBirth.ToString("yyyy-MM-dd");
 
-            string  sql = $"Update AspNetUsers " +
+            string sql = $"Update AspNetUsers " +
                 $"set  PhoneNumber = \'{phoneNumber}\' ," +
                 $"Name = \'{name}\'," +
                 $"DateOfBirth= \'{dateOfBirthString}\'," +
@@ -114,29 +89,29 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
 
         public IActionResult OnGet(IdentityUser user)
         {
-            var connection = CreateSqlConnection();
+            var connection = DatabaseFunctions.CreateSqlConnection();
             connection.Open();
             var userName = HttpContext.User.Identity.Name;
             // Maybe it should be single query to database and place data to object to retrive data later
-                var name = GetSingleValueFromSqlCommand($"Select Name from AspNetUsers where UserName = \'{userName}\'");
-                var surname = GetSingleValueFromSqlCommand($"Select Surname from AspNetUsers where UserName = \'{userName}\'");
-             var phoneNumber = GetSingleValueFromSqlCommand($"Select PhoneNumber from AspNetUsers where UserName = \'{userName}\'");
-            var id = GetSingleValueFromSqlCommand($"Select Id from AspNetUsers where UserName = \'{userName}\'");
-            var gender = GetSingleValueFromSqlCommand($"Select Gender from AspNetUsers where UserName = \'{userName}\'");
-            var dateOfBirth= GetSingleValueFromSqlCommand($"Select DateOfBirth from AspNetUsers where UserName = \'{userName}\'");
-            if(dateOfBirth == null)
+            var name = DatabaseFunctions.GetFirstValueOfTheFirstColumnFromSqlCommand($"Select Name from AspNetUsers where UserName = \'{userName}\'", connection);
+            var surname = DatabaseFunctions.GetFirstValueOfTheFirstColumnFromSqlCommand($"Select Surname from AspNetUsers where UserName = \'{userName}\'", connection);
+            var phoneNumber = DatabaseFunctions.GetFirstValueOfTheFirstColumnFromSqlCommand($"Select PhoneNumber from AspNetUsers where UserName = \'{userName}\'", connection);
+            var id = DatabaseFunctions.GetFirstValueOfTheFirstColumnFromSqlCommand($"Select Id from AspNetUsers where UserName = \'{userName}\'", connection);
+            var gender = DatabaseFunctions.GetFirstValueOfTheFirstColumnFromSqlCommand($"Select Gender from AspNetUsers where UserName = \'{userName}\'", connection);
+            var dateOfBirth = DatabaseFunctions.GetFirstValueOfTheFirstColumnFromSqlCommand($"Select DateOfBirth from AspNetUsers where UserName = \'{userName}\'", connection);
+            if (dateOfBirth == null)
             {
                 dateOfBirth = DateTime.MinValue;
             }
             Input = new InputModel
             {
                 PhoneNumber = (string)phoneNumber,
-                Username = (string)userName,
+                Username = userName,
                 Surname = (string)surname,
                 Name = (string)name,
                 Gender = (string)gender,
-               DateOfBirth = (DateTime)dateOfBirth
- 
+                DateOfBirth = (DateTime)dateOfBirth
+
             };
             return Page();
         }

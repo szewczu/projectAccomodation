@@ -6,33 +6,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
- 
-
-
 <h1>Dodaj ogłoszenie</h1>
 
-
-
-
-
 <div class="container">
-
-    <form action="#" method="post">
+    <form id="Announcement-form" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
 
-        <div class="invisible">
+        <div class="form-group">
             <label asp-for="Input.TypeOfAdvertisement"></label>
             <select class="custom-select" asp-for="Input.TypeOfAdvertisement">
-                <option value="Wynajeme" selected>Wynajme</option>
-                <option value="Szukam">Szukam</option>
-                <option value="Wymienie" >Wymienie</option>
+                <option value="Rent" >Wynajme</option>
+                <option value="LookingFor">Szukam</option>
+                <option value="Exchange">Wymienie</option>
             </select>
         </div>
 
         <div class="form-group">
             <label asp-for="Input.Title"></label>
-            <input asp-for="Input.Title" type="text" >
-            <input asp-for="Input.Title" id="blo" type="text" >
+            <input asp-for="Input.Title" type="text">
             <span asp-validation-for="Input.Title" class="text-danger"></span>
         </div>
 
@@ -59,10 +50,14 @@
             <input asp-for="Input.Price" type="number">
             <span asp-validation-for="Input.Price" class="text-danger"></span>
         </div>
-
         <div class="form-group">
             <label asp-for="Input.PropertyType"></label>
-            <input asp-for="Input.PropertyType" type="text">
+            <select class="custom-select" asp-for="Input.PropertyType">
+                <option value="Apartment" selected>Apartament</option>
+                <option value="House">Dom</option>
+                <option value="Building">Budynek</option>
+                <option value="Other">Inne</option>
+            </select>
             <span asp-validation-for="Input.PropertyType" class="text-danger"></span>
         </div>
 
@@ -110,9 +105,7 @@
             <span asp-validation-for="Input.Country" class="text-danger"></span>
         </div>
 
-        <button type="submit" a>Zapisz</button>
-
-
+        <button id="create-announcement-button" type="submit" class="btn btn-primary">Zapisz</button>
 
     </form>
 </div>
