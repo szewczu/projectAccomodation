@@ -45,24 +45,25 @@
                     "datatype": "json"
                 },
                 "columnDefs":
-                [{
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                }],
+                    [{
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    }],
                 "columns": [
                     { "data": "Id", "name": "Id", "autoWidth": true },
                     { "data": "UserName", "name": "UserName", "autoWidth": true },
                     { "data": "Email", "name": "Email", "autoWidth": true },
+                    
 
                     {
                         "render": function (data, type, full, meta)
-                        { return '<a class="btn btn-info" href="/DemoGrid/Edit/' + full.Id + '">Edit</a>'; }
+                        { return '<a class="btn btn-info" href="/DemoGrid/Edit/' + full.Id + '">Edytuj</a>'; }
                     },
                     {
                         data: null, render: function (data, type, row)
                         {
-                            return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.Id + "'); >Delete</a>";
+                            return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.Id + "'); >Usuń</a>";
                         }
                     },
                 ]
@@ -73,7 +74,7 @@
 
     function DeleteData(Id)
         {
-            if (confirm("Czy na pewno chcesz usunąć ...?"))
+            if (confirm("Czy na pewno chcesz usunąć?"))
             {
                 Delete(Id);
             }

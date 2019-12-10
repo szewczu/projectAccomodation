@@ -7,7 +7,8 @@ using Noclegi.Models;
 using System.Linq.Dynamic.Core;
 using Noclegi.Data;
 using System.Diagnostics;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860  
 
 namespace Noclegi.Controllers
@@ -30,7 +31,6 @@ namespace Noclegi.Controllers
 
         public IActionResult LoadData()
         {
-            Debug.WriteLine("--------------------load data test");
             try
             {
                 var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
@@ -51,7 +51,7 @@ namespace Noclegi.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data  
-                var customerData = (from tempcustomer in _context.IdentityUser
+                var customerData = (from tempcustomer in _context.UsersTB
                                     select tempcustomer);
                 
 
