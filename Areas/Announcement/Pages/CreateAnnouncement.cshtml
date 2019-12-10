@@ -10,12 +10,14 @@
 
 <div class="container">
     <form id="Announcement-form" method="post">
+
+
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="form-group">
-            <label asp-for="Input.TypeOfAdvertisement"></label>
+            <label asp-for="Input.TypeOfAdvertisement" ></label>
             <select class="custom-select" asp-for="Input.TypeOfAdvertisement">
-                <option value="Rent" >Wynajme</option>
+                <option value="Rent">Wynajme</option>
                 <option value="LookingFor">Szukam</option>
                 <option value="Exchange">Wymienie</option>
             </select>
@@ -47,7 +49,7 @@
 
         <div class="form-group">
             <label asp-for="Input.Price"></label>
-            <input asp-for="Input.Price" type="number">
+            <input asp-for="Input.Price" type="number" >
             <span asp-validation-for="Input.Price" class="text-danger"></span>
         </div>
         <div class="form-group">

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -28,30 +27,7 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Phone]
-            [Display(Name = "Numer telefonu")]
-            public string PhoneNumber { get; set; }
-
-            [Display(Name = "Nazwa użytkownika")]
-            public string Username { get; set; }
-
-            [Display(Name = "Imię")]
-            public string Name { get; set; }
-
-            [Display(Name = "Nazwisko")]
-            public string Surname { get; set; }
-
-            [Display(Name = "Płeć")]
-            public string Gender { get; set; }
-
-            [Display(Name = "Data urodzenia")]
-            public DateTime DateOfBirth { get; set; }
-
-        }
+        public ManageAccountIndexInputModel Input { get; set; }
 
         public IActionResult OnPost(IdentityUser user)
         {
@@ -103,7 +79,7 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             {
                 dateOfBirth = DateTime.MinValue;
             }
-            Input = new InputModel
+            Input = new ManageAccountIndexInputModel
             {
                 PhoneNumber = (string)phoneNumber,
                 Username = userName,
