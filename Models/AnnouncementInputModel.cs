@@ -56,6 +56,8 @@ namespace Noclegi.Areas.Announcement.Pages
 
             [Display(Name = "Kraj")]
             public string Country { get; set; }
+
+            public string ExchangeAdId { get; set; }
         }
 
 

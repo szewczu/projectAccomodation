@@ -16,6 +16,8 @@ namespace Noclegi.Areas.Announcement.Pages
         [BindProperty]
         public AnnouncementInputModel Input { get; set; }
 
+        [BindProperty]
+        public AnnouncementInputModel ExchangeInput { get; set; }
 
         private bool IsAddressNotEmpty()
         {
@@ -46,14 +48,19 @@ namespace Noclegi.Areas.Announcement.Pages
             if (typeOfAdvertisement != "LookingFor" && IsAddressNotEmpty())
             {
                 string userId = GetCurrentUserIdByUserName();
-                int announcementID = CreateNewAnnouncement(userId);
-                CreateNewAnnoucementAddress(announcementID);
+                int announcementID = CreateNewAnnouncement(userId, Input);
+                CreateNewAnnoucementAddress(announcementID, Input);
+                if(Input.TypeOfAdvertisement == "Exchange")
+                {
+                    int announcementExchangeID = CreateNewAnnouncement(userId, ExchangeInput, announcementID);
+                    CreateNewAnnoucementAddress(announcementExchangeID, ExchangeInput);
+                }
                 return RedirectToPage("Index");
             }
             else if (typeOfAdvertisement == "LookingFor")
             {
                 string userId = GetCurrentUserIdByUserName();
-                CreateNewAnnouncement(userId);
+                CreateNewAnnouncement(userId, Input);
                 return RedirectToPage("Index");
             }
             //should show error: address is required when selected Rent or Exchange
@@ -64,7 +71,7 @@ namespace Noclegi.Areas.Announcement.Pages
 
 
 
-        private void CreateNewAnnoucementAddress(object announcementID)
+        private void CreateNewAnnoucementAddress(object announcementID, AnnouncementInputModel Input)
         {
             SqlConnection connection = DatabaseFunctions.CreateSqlConnection();
             connection.Open();
@@ -84,7 +91,7 @@ namespace Noclegi.Areas.Announcement.Pages
             connection.Close();
         }
 
-        private int CreateNewAnnouncement(object userId) // test.test@test.test id "476a5306-6060-4ab2-ae1b-890de13527e0"
+        private int CreateNewAnnouncement(object userId, AnnouncementInputModel Input, int exchangeId = 0) // test.test@test.test id "476a5306-6060-4ab2-ae1b-890de13527e0"
         {
             SqlConnection connection = DatabaseFunctions.CreateSqlConnection();
             connection.Open();
@@ -98,18 +105,21 @@ namespace Noclegi.Areas.Announcement.Pages
             var propertyType = Input.PropertyType;
             var floor = Input.Floor;
             var rooms = Input.Rooms;
-
+            object exchangeAdId = CheckIfAnnouncementIdWasGiven(exchangeId);
             string sqlSetQuery = $"INSERT INTO AspNetAdvertisement " +
-              $"(UserId, Title, Description, StartDate,EndDate,Price, {typeOfAdvertisement}, PropertyType,Floor,Rooms) " +
+              $"(UserId, Title, Description, StartDate,EndDate,Price, {typeOfAdvertisement}, PropertyType,Floor,Rooms, ExchangeAdId) " +
               $"OUTPUT INSERTED.ID " +
-              $"VALUES ('{userId}','{title}','{description}','{startDate}', '{endDate}', '{price}','true','{propertyType}','{floor}','{rooms}');"; //  SELECT SCOPE_IDENTITY(),               $"output inserted.Id" +
+              $"VALUES ('{userId}','{title}','{description}','{startDate}', '{endDate}', '{price}','true','{propertyType}','{floor}','{rooms}','{exchangeAdId.GetType()}');"; //  SELECT SCOPE_IDENTITY(),               $"output inserted.Id" +
             SqlCommand command = new SqlCommand(sqlSetQuery, connection);
             int insertedID = Convert.ToInt32(command.ExecuteScalar());
             command.ExecuteNonQuery();
             connection.Close();
             return insertedID;
+        }
 
-
+        private static object CheckIfAnnouncementIdWasGiven(int exchangeId)
+        {
+            return exchangeId != 0 ? exchangeId : (object)null;
         }
 
         private string GetCurrentUserIdByUserName()
