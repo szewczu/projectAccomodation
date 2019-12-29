@@ -1,8 +1,8 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
@@ -58,7 +58,8 @@
 
                     {
                         "render": function (data, type, full, meta)
-                        { return '<a class="btn btn-info" href="/DemoGrid/Edit/' + full.Id + '">Edytuj</a>'; }
+                        //{ return '<a class="btn btn-info" href="/DemoGrid/Edit/' + full.Id + '">Edytuj</a>'; } wersja z ID
+                        { return '<a class="btn btn-info" href="/DemoGrid/Edit/">Edytuj</a>'; }
                     },
                     {
                         data: null, render: function (data, type, row)
@@ -85,9 +86,8 @@
         }
 
 
-        function Delete(Id)
-    {
-        var url = '@Url.Content("~/")' + "DemoGrid/Delete";
+    function Delete(Id) {
+        @*var url = '@Url.Content("~/")' + "DemoGrid/Delete";
 
             $.post(url, { ID: Id }, function (data)
                 {
@@ -100,9 +100,26 @@
                     {
                         alert("Wystąpił błąd!");
                     }
-                });
-    }
+                });*@
+     
+
+    var url = '@Url.Content("~/")' + "DemoGrid/Delete";
+
+        $.ajax({
+            type: 'GET',
+            url: '/DemoGrid/DeleteUser',
+            data: {Id:Id},
+            dataType: 'json',
+            success: function (data) {
+                alert('Wystąpił błąd');
+
+            },
+            error: function (error) {
+                alert('Pomyślnie usunięto użytkownika');
+                window.location.reload();
+            }
+        });
+    };
 
 </script>
-
 

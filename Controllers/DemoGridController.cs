@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Noclegi.Models;
 using System.Linq.Dynamic.Core;
-using Noclegi.Data;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using Noclegi.Data;
+using Noclegi.Helpers;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860  
 
 namespace Noclegi.Controllers
@@ -24,11 +26,35 @@ namespace Noclegi.Controllers
         // GET: /<controller>/  
         public IActionResult ShowGrid()
         {
-            
+
             return View();
 
         }
+        public IActionResult Edit()
+        {
 
+            return PartialView();
+
+        }
+
+        public void DeleteUser(string Id)
+        {
+            using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
+            {
+                //using (SqlCommand cmd = new SqlCommand("Delete FROM AspNetUsers WHERE Id='"+Id+"'")) 
+                using (SqlCommand cmd = new SqlCommand("EXEC DELETE_USER_P @USER_ID='"+Id+"'"))
+
+                {
+
+                    cmd.Connection = con;
+                    con.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    con.Close();
+                }
+                
+            }
+           
+        }
         public IActionResult LoadData()
         {
             try
