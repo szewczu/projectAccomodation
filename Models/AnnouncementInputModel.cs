@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Noclegi.Areas.Announcement.Pages
@@ -58,6 +59,13 @@ namespace Noclegi.Areas.Announcement.Pages
             public string Country { get; set; }
 
             public string ExchangeAdId { get; set; }
+
+            public IFormFile Picture1Bin { get; set; }
+            public IFormFile Picture2Bin { get; set; }
+            public IFormFile Picture3Bin { get; set; }
+            public IFormFile Picture4Bin { get; set; }
+            public IFormFile Picture5Bin { get; set; }
+            public IFormFile Picture6Bin { get; set; }
         }
 
 

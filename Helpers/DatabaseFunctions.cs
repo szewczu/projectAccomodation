@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Data;
 
 namespace Noclegi.Helpers
 {

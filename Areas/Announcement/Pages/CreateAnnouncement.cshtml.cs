@@ -1,4 +1,7 @@
 using System;
+using System.Data;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -9,10 +12,8 @@ namespace Noclegi.Areas.Announcement.Pages
 
     public partial class CreateAnnouncementModel : PageModel
     {
-
         public CreateAnnouncementModel()
         {  }
-
         [BindProperty]
         public AnnouncementInputModel Input { get; set; }
 
@@ -31,45 +32,47 @@ namespace Noclegi.Areas.Announcement.Pages
             return true;
 
         }
+
         public IActionResult OnPost()
         {
-            if(Input.StartDate > Input.EndDate)
+            if (Input.StartDate > Input.EndDate)
             {
                 //error message: error: start date should be before end date
                 return Page();
             }
 
-            if(Input.StartDate < DateTime.Now)
+            if (Input.StartDate < DateTime.Now)
             {
                 //error message: error: start date should be before end date
                 return Page();
             }
             string typeOfAdvertisement = Input.TypeOfAdvertisement;
+            string userId = GetCurrentUserIdByUserName();
+
             if (typeOfAdvertisement != "LookingFor" && IsAddressNotEmpty())
             {
-                string userId = GetCurrentUserIdByUserName();
                 int announcementID = CreateNewAnnouncement(userId, Input);
                 CreateNewAnnoucementAddress(announcementID, Input);
-                if(Input.TypeOfAdvertisement == "Exchange")
+                UploadImages(announcementID, Input);
+
+                if (Input.TypeOfAdvertisement == "Exchange")
                 {
                     int announcementExchangeID = CreateNewAnnouncement(userId, ExchangeInput, announcementID);
                     CreateNewAnnoucementAddress(announcementExchangeID, ExchangeInput);
                 }
+
                 return RedirectToPage("Index");
             }
             else if (typeOfAdvertisement == "LookingFor")
             {
-                string userId = GetCurrentUserIdByUserName();
                 CreateNewAnnouncement(userId, Input);
                 return RedirectToPage("Index");
             }
             //should show error: address is required when selected Rent or Exchange
 
-             string message = "error: address is required when selected Rent or Exchange";
+            string message = "error: address is required when selected Rent or Exchange";
             return Page();
         }
-
-
 
         private void CreateNewAnnoucementAddress(object announcementID, AnnouncementInputModel Input)
         {
@@ -105,21 +108,30 @@ namespace Noclegi.Areas.Announcement.Pages
             var propertyType = Input.PropertyType;
             var floor = Input.Floor;
             var rooms = Input.Rooms;
-            object exchangeAdId = CheckIfAnnouncementIdWasGiven(exchangeId);
-            string sqlSetQuery = $"INSERT INTO AspNetAdvertisement " +
-              $"(UserId, Title, Description, StartDate,EndDate,Price, {typeOfAdvertisement}, PropertyType,Floor,Rooms, ExchangeAdId) " +
-              $"OUTPUT INSERTED.ID " +
-              $"VALUES ('{userId}','{title}','{description}','{startDate}', '{endDate}', '{price}','true','{propertyType}','{floor}','{rooms}','{exchangeAdId.GetType()}');"; //  SELECT SCOPE_IDENTITY(),               $"output inserted.Id" +
+
+            string sqlSetQuery = null;
+            if (exchangeId != 0)
+            {
+                sqlSetQuery = $"INSERT INTO AspNetAdvertisement " +
+                 $"(UserId, Title, Description, StartDate,EndDate,Price, {typeOfAdvertisement}, PropertyType,Floor,Rooms, ExchangeAdId) " +
+                 $"OUTPUT INSERTED.ID " +
+                 $"VALUES ('{userId}','{title}','{description}','{startDate}', '{endDate}', '{price}','true','{propertyType}','{floor}','{rooms}','{exchangeId}');";
+            }
+            else
+            {
+                sqlSetQuery = $"INSERT INTO AspNetAdvertisement " +
+               $"(UserId, Title, Description, StartDate,EndDate,Price, {typeOfAdvertisement}, PropertyType,Floor,Rooms) " +
+               $"OUTPUT INSERTED.ID " +
+                $"VALUES ('{userId}','{title}','{description}','{startDate}', '{endDate}', '{price}','true','{propertyType}','{floor}','{rooms}');";
+
+            }
             SqlCommand command = new SqlCommand(sqlSetQuery, connection);
             int insertedID = Convert.ToInt32(command.ExecuteScalar());
-            command.ExecuteNonQuery();
+            // command.ExecuteNonQuery();
             connection.Close();
-            return insertedID;
-        }
 
-        private static object CheckIfAnnouncementIdWasGiven(int exchangeId)
-        {
-            return exchangeId != 0 ? exchangeId : (object)null;
+
+            return insertedID;
         }
 
         private string GetCurrentUserIdByUserName()
@@ -137,7 +149,61 @@ namespace Noclegi.Areas.Announcement.Pages
         }
 
 
+        private void UploadImages(int announcementId, AnnouncementInputModel Input)
+        {
+            var adverteismentId = announcementId;
+            var image1 = Input.Picture1Bin;
+            var image2 = Input.Picture2Bin;
+            var image3 = Input.Picture3Bin;
+            var image4 = Input.Picture4Bin;
+            var image5 = Input.Picture5Bin;
+            var image6 = Input.Picture6Bin;
+
+            SqlConnection connection = DatabaseFunctions.CreateSqlConnection();
+            connection.Open();
+            string sqlSetQuery = $"INSERT INTO AspNetPicture " +
+                 $"(AdvertisementId, Picture1Bin,Picture2Bin,Picture3Bin,Picture4Bin,Picture5Bin,Picture6Bin) " +
+                 $"VALUES (@adverteismentId,@image1,@image2,@image3,@image4,@image5,@image6);";
+
+            SqlCommand command = new SqlCommand(sqlSetQuery, connection);
+            command.Parameters.AddWithValue("@adverteismentId", adverteismentId);
+            //add parameter
+            AddParameter("image1", image1, command);
+            AddParameter("image2", image2, command);
+            AddParameter("image3", image3, command);
+            AddParameter("image4", image4, command);
+            AddParameter("image5", image5, command);
+            AddParameter("image6", image6, command);
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        private static void AddParameter(string parameterName, IFormFile image1, SqlCommand command)
+        {
+            command.Parameters.Add($"@{parameterName}", SqlDbType.VarBinary, -1);
+
+            if (ConvertImageToByteArray(image1) != null)
+                command.Parameters[$"@{parameterName}"].Value = ConvertImageToByteArray(image1);
+            else
+                command.Parameters[$"@{parameterName}"].Value = DBNull.Value;
+        }
+
+        private static byte[] ConvertImageToByteArray(IFormFile image)
+        {
+            byte[] imageByteArray = null;
+            if (image == null)
+            {
+                return imageByteArray;
+            }
+            using (BinaryReader br = new BinaryReader(image.OpenReadStream()))
+            {
+                imageByteArray = br.ReadBytes((int)image.OpenReadStream().Length);
+                // Convert the image in to bytes
+            }
+
+            return imageByteArray;
+        }
     }
 }
-
-
