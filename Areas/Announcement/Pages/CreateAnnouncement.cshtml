@@ -4,113 +4,215 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 
-<h1>Dodaj ogłoszenie</h1>
+<div class="text-center">
+    <h1>Dodaj ogłoszenie</h1>
+</div>
 
-<div class="container">
-    <form id="Announcement-form" method="post" enctype="multipart/form-data">
 
 
-        <div asp-validation-summary="All" class="text-danger"></div>
+
+
+<div class="container shadow-lg">
+
+    <form action="#" method="post">
+
 
         <div class="form-group">
             <label asp-for="Input.TypeOfAdvertisement"></label>
-            <select class="custom-select" asp-for="Input.TypeOfAdvertisement">
-                <option value="Rent">Wynajme</option>
-                <option value="LookingFor">Szukam</option>
-                <option value="Exchange">Wymienie</option>
+            <select class="custom-select mr-sm-2" asp-for="Input.TypeOfAdvertisement" id="idSelect">
+                <option value="Wynajmę" selected>Wynajmę</option>
+                <option value="Szukam">Szukam</option>
+                <option value="Wymienię">Wymienię</option>
             </select>
         </div>
 
-        <div class="form-group">
-            <label asp-for="Input.Title"></label>
-            <input asp-for="Input.Title" type="text" value="TESTZDJECIA">
-            <span asp-validation-for="Input.Title" class="text-danger"></span>
-        </div>
+        <hr class="my-4">
 
         <div class="form-group">
-            <label asp-for="Input.Description"></label>
-            <input asp-for="Input.Description" type="text" value="TESTZDJECIA">
-            <span asp-validation-for="Input.Description" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-md-6  rounded">
+                    <div class="form-group">
+                        <label asp-for="Input.Title"></label>
+                        <input asp-for="Input.Title" type="text" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="Input.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Description"></label>
+                        <textarea asp-for="Input.Description" type="text" class="form-control" value="TESTZDJECIA"></textarea>
+                        <span asp-validation-for="Input.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.StartDate"></label>
+                        <input asp-for="Input.StartDate" type="date" class="form-control" value="10.10.2019">
+                        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.EndDate"></label>
+                        <input asp-for="Input.EndDate" type="date" class="form-control" value="10.10.2020">
+                        <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="form-group">
+                        <label asp-for="Input.Price"></label>
+                        <input asp-for="Input.Price" type="number" class="form-control" value="2500">
+                        <span asp-validation-for="Input.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.PropertyType"></label>
+                        <select class="custom-select" asp-for="Input.PropertyType">
+                            <option value="Apartment" selected>Apartament</option>
+                            <option value="House">Dom</option>
+                            <option value="Building">Budynek</option>
+                            <option value="Other">Inne</option>
+                        </select>
+                        <span asp-validation-for="Input.PropertyType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Floor"></label>
+                        <input asp-for="Input.Floor" type="number" class="form-control" value="2">
+                        <span asp-validation-for="Input.Floor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Rooms"></label>
+                        <input asp-for="Input.Rooms" type="number" class="form-control" value="2">
+                        <span asp-validation-for="Input.Rooms" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group col-md-6" id="panelVisibility" style="display:none">
+
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Title" id="ExchangeTitle"></label>
+                        <input asp-for="ExchangeInput.Title" type="text" id="ExchangeTitle" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="ExchangeInput.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Description" id="ExchangeDescription"></label>
+                        <textarea asp-for="ExchangeInput.Description" type="text" id="ExchangeDescription" class="form-control" value="TESTZDJECIA"></textarea>
+                        <span asp-validation-for="ExchangeInput.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.StartDate" id="ExchangeStartDate"></label>
+                        <input asp-for="ExchangeInput.StartDate" type="date" id="ExchangeStartDate" class="form-control" value="10.10.2019">
+                        <span asp-validation-for="ExchangeInput.StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.EndDate" id="ExchangeEndDate"></label>
+                        <input asp-for="ExchangeInput.EndDate" type="date" id="ExchangeEndDate" class="form-control" value="10.10.2020">
+                        <span asp-validation-for="ExchangeInput.EndDate" class="text-danger"></span>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Price" id="ExchangePrice"></label>
+                        <input asp-for="ExchangeInput.Price" type="number" id="ExchangePrice" class="form-control" value="2500">
+                        <span asp-validation-for="ExchangeInput.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.PropertyType" id="ExchangePropertyType"></label>
+                        <select class="custom-select" asp-for="ExchangeInput.PropertyType" id="ExchangePropertyType">
+                            <option value="Apartment" selected>Apartament</option>
+                            <option value="House">Dom</option>
+                            <option value="Building">Budynek</option>
+                            <option value="Other">Inne</option>
+                        </select>
+                        <span asp-validation-for="ExchangeInput.PropertyType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Floor" id="ExchangeFloor"></label>
+                        <input asp-for="ExchangeInput.Floor" type="number" id="ExchangeFloor" class="form-control" value="2">
+                        <span asp-validation-for="ExchangeInput.Floor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Rooms" id="ExchangeRooms"></label>
+                        <input asp-for="ExchangeInput.Rooms" type="number" id="ExchangeRooms" class="form-control" value="2">
+                        <span asp-validation-for="ExchangeInput.Rooms" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="form-group">
-            <label asp-for="Input.StartDate"></label>
-            <input asp-for="Input.StartDate" type="date" value="10.10.2020">
-            <span asp-validation-for="Input.StartDate" class="text-danger"></span>
-        </div>
 
-        <div class="form-group">
-            <label asp-for="Input.EndDate"></label>
-            <input asp-for="Input.EndDate" type="date">
-            <span asp-validation-for="Input.EndDate" class="text-danger"></span>
-        </div>
 
-        <div class="form-group">
-            <label asp-for="Input.Price"></label>
-            <input asp-for="Input.Price" type="number" value="20000">
-            <span asp-validation-for="Input.Price" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.PropertyType"></label>
-            <select class="custom-select" asp-for="Input.PropertyType">
-                <option value="Apartment" selected>Apartament</option>
-                <option value="House">Dom</option>
-                <option value="Building">Budynek</option>
-                <option value="Other">Inne</option>
-            </select>
-            <span asp-validation-for="Input.PropertyType" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.Floor"></label>
-            <input asp-for="Input.Floor" type="number" value="2">
-            <span asp-validation-for="Input.Floor" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.Rooms"></label>
-            <input asp-for="Input.Rooms" type="number" value="3">
-            <span asp-validation-for="Input.Rooms" class="text-danger"></span>
-        </div>
 
         <h4>Adres</h4>
 
-        <div class="form-group">
-            <label asp-for="Input.Street"></label>
-            <input asp-for="Input.Street" type="text"value="TEST1">
-            <span asp-validation-for="Input.Street" class="text-danger"></span>
-        </div>
+
+
+
+
 
         <div class="form-group">
-            <label asp-for="Input.City"></label>
-            <input asp-for="Input.City" type="text" value="TEST2">
-            <span asp-validation-for="Input.City" class="text-danger"></span>
-        </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Input.Street"></label>
+                        <input asp-for="Input.Street" type="text" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="Input.Street" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.City"></label>
+                        <input asp-for="Input.City" type="text" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.PostCode"></label>
+                        <input asp-for="Input.PostCode" type="text" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="Input.PostCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Province"></label>
+                        <input asp-for="Input.Province" type="text" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="Input.Province" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Country"></label>
+                        <input asp-for="Input.Country" type="text" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="Input.Country" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6" id="adresVisibility" style="display:none">
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Street" id="ExchangeStreet"></label>
+                        <input asp-for="ExchangeInput.Street" type="text" id="ExchangeStreet" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="ExchangeInput.Street" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.City" id="ExchangeCity"></label>
+                        <input asp-for="ExchangeInput.City" type="text" id="ExchangeCity" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="ExchangeInput.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.PostCode" id="ExchangePostCode"></label>
+                        <input asp-for="ExchangeInput.PostCode" type="text" id="ExchangePostCode" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="ExchangeInput.PostCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Province" id="ExchangeProvince"></label>
+                        <input asp-for="ExchangeInput.Province" type="text" id="ExchangeProvince" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="ExchangeInput.Province" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExchangeInput.Country" id="ExchangeCountry"></label>
+                        <input asp-for="ExchangeInput.Country" type="text" id="ExchangeCountry" class="form-control" value="TESTZDJECIA">
+                        <span asp-validation-for="ExchangeInput.Country" class="text-danger"></span>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label asp-for="Input.PostCode"></label>
-            <input asp-for="Input.PostCode" type="text" value="TEST3">
-            <span asp-validation-for="Input.PostCode" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.Province"></label>
-            <input asp-for="Input.Province" type="text" value="TEST4">
-            <span asp-validation-for="Input.Province" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Input.Country"></label>
-            <input asp-for="Input.Country" type="text" value="Test5">
-            <span asp-validation-for="Input.Country" class="text-danger"></span>
+            </div>
         </div>
 
         <div class="form-group">
             <label asp-for="Input.Picture1Bin"></label>
-            <input asp-for="Input.Picture1Bin" type="file"   accept="image/png, image/jpeg">>
+            <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg">>
         </div>
         <div class="form-group">
             <label asp-for="Input.Picture2Bin"></label>
@@ -134,12 +236,12 @@
         </div>
         <div class="form-group">
             <label asp-for="Input.Picture6Bin"></label>
-            <input asp-for="Input.Picture6Bin"  type="file" accept="image/png, image/jpeg">>
+            <input asp-for="Input.Picture6Bin" type="file" accept="image/png, image/jpeg">>
             <span asp-validation-for="Input.Picture6Bin" class="text-danger"></span>
         </div>
 
 
-        <button id="create-announcement-button" type="submit" class="btn btn-primary" >Zapisz</button>
+        <button id="create-announcement-button" type="submit" class="btn btn-primary">Zapisz</button>
 
 
     </form>
@@ -148,4 +250,23 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+
+    <script language="javascript">
+
+        const select = document.querySelector('select[id="idSelect"]');
+
+        select.addEventListener("change", function () {
+
+
+            if (select.value != "Wymienię") {
+                document.querySelector('div[id="panelVisibility"]').style = "display:none";
+                document.querySelector('div[id="adresVisibility"]').style = "display:none";
+            }
+            else {
+                document.querySelector('div[id="panelVisibility"]').style = "display:inline";
+                document.querySelector('div[id="adresVisibility"]').style = "display:inline";
+            }
+        });
+    </script>
 }
