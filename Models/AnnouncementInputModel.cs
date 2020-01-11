@@ -60,6 +60,7 @@ namespace Noclegi.Areas.Announcement.Pages
 
             public string ExchangeAdId { get; set; }
 
+            
             public IFormFile Picture1Bin { get; set; }
             public IFormFile Picture2Bin { get; set; }
             public IFormFile Picture3Bin { get; set; }

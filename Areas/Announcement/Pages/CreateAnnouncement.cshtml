@@ -17,15 +17,15 @@
 
 <div class="container shadow-lg">
 
-    <form action="#" method="post">
+    <form id="Announcement-form" method="post" enctype="multipart/form-data">
 
 
         <div class="form-group">
             <label asp-for="Input.TypeOfAdvertisement"></label>
             <select class="custom-select mr-sm-2" asp-for="Input.TypeOfAdvertisement" id="idSelect">
-                <option value="Wynajmę" selected>Wynajmę</option>
-                <option value="Szukam">Szukam</option>
-                <option value="Wymienię">Wymienię</option>
+                <option value="Rent" selected>Wynajmę</option>
+                <option value="LookingFor">Szukam</option>
+                <option value="Exchange">Wymienię</option>
             </select>
         </div>
 
@@ -210,32 +210,34 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="Input.Picture1Bin"></label>
-            <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg">>
+        <div class="text-left">
+            <h4>Dodaj zdjęcia</h4>
         </div>
-        <div class="form-group">
-            <label asp-for="Input.Picture2Bin"></label>
+
+
+
+
+        <div class="form-group" class="row">
+            <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg">>
+            <span asp-validation-for="Input.Picture1Bin" class="text-danger"></span>
+        </div>
+        <div class="form-group" class="row">
             <input asp-for="Input.Picture2Bin" type="file" accept="image/png, image/jpeg">>
             <span asp-validation-for="Input.Picture2Bin" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Input.Picture3Bin"></label>
+        <div class="form-group" class="row">
             <input asp-for="Input.Picture3Bin" type="file" accept="image/png, image/jpeg">>
             <span asp-validation-for="Input.Picture3Bin" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Input.Picture4Bin"></label>
+        <div class="form-group" class="row">
             <input asp-for="Input.Picture4Bin" type="file" accept="image/png, image/jpeg">>
             <span asp-validation-for="Input.Picture4Bin" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Input.Picture5Bin"></label>
+        <div class="form-group" class="row">
             <input asp-for="Input.Picture5Bin" type="file" accept="image/png, image/jpeg">>
             <span asp-validation-for="Input.Picture5Bin" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Input.Picture6Bin"></label>
+        <div class="form-group" class="row">
             <input asp-for="Input.Picture6Bin" type="file" accept="image/png, image/jpeg">>
             <span asp-validation-for="Input.Picture6Bin" class="text-danger"></span>
         </div>
@@ -259,7 +261,7 @@
         select.addEventListener("change", function () {
 
 
-            if (select.value != "Wymienię") {
+            if (select.value != "Exchange") {
                 document.querySelector('div[id="panelVisibility"]').style = "display:none";
                 document.querySelector('div[id="adresVisibility"]').style = "display:none";
             }
