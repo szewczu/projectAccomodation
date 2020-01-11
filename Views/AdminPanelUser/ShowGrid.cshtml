@@ -29,7 +29,7 @@
 </div>
 
 <script>
-
+       
 
         $(document).ready(function ()
         {
@@ -40,7 +40,7 @@
                 "filter": true, // this is for disable filter (search box)
                 "orderMulti": false, // for disable multiple column at once
                 "ajax": {
-                    "url": "/DemoGrid/LoadData",
+                    "url": "/AdminPanelUser/LoadData",
                     "type": "POST",
                     "datatype": "json"
                 },
@@ -57,9 +57,9 @@
                     
 
                     {
-                        "render": function (data, type, full, meta)
-                        //{ return '<a class="btn btn-info" href="/DemoGrid/Edit/' + full.Id + '">Edytuj</a>'; } wersja z ID
-                        { return '<a class="btn btn-info" href="/DemoGrid/Edit/">Edytuj</a>'; }
+                        "render": function (data, type, row)
+                        
+                        { return "<a class='btn btn-info' onclick=EditUser('" + row.Id + "'); href='/AdminPanelUser/ShowEdit'  />Edytuj</a>"; }
                     },
                     {
                         data: null, render: function (data, type, row)
@@ -107,7 +107,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/DemoGrid/DeleteUser',
+            url: '/AdminPanelUser/DeleteUser',
             data: {Id:Id},
             dataType: 'json',
             success: function (data) {
@@ -119,6 +119,28 @@
                 window.location.reload();
             }
         });
+    };
+
+    function EditUser(Id) {
+        localStorage.setItem("storageId", Id);
+
+    //var url = '@Url.Content("~/")' + "DemoGrid/Edit"+value;
+        $.ajax({
+            type: 'GET',
+            url: '/AdminPanelUser/EditUser',
+            data: {Id:Id},
+            dataType: 'json',
+            success: function (data) {
+                alert('Wystąpił błąd');
+
+            },
+            error: function (error) {
+                //alert('Pomyślnie usunięto użytkownika');
+
+            }
+        });
+
+
     };
 
 </script>

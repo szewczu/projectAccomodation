@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<h1>Edytowanie użytkownika</h1>
+<form class="col-md-6">
+    <br />
+    Login: <input id="UserName" type="text" class="form-control" @*asp-for="InputInformation.UserName"*@ /><br /><br />
+    Email: <input id="Email" type="email" class="form-control" @*asp-for="InputInformation.Email"*@ /><br /><br />
+    Numer telefonu: <input id="PhoneNumber" type="text" class="form-control" @*asp-for="InputInformation.PhoneNumber"*@ /><br /><br />
+    Imie: <input id="Name" type="text" class="form-control" @*asp-for="InputInformation.Name"*@ /><br /><br />
+    Nazwisko: <input id="Surname" type="text" class="form-control" @*asp-for="InputInformation.Surname"*@ /><br /><br />
+    Płeć: <select id="Gender" class="form-control">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select><br /><br />
+    Data urodzenia: <input id="DateOfBrith" type="date" class="form-control" /><br /><br />
+    <a onclick="EditUserButton()" class="btn btn-danger">Aktualizuj</a>
+
+</form>
+
+
+
+<script>
+
+    var inputLogin = document.getElementById("UserName");
+    var inputEmail = document.getElementById("Email");
+    var inputTel = document.getElementById("PhoneNumber");
+    var inputImie = document.getElementById("Name");
+    var inputNazwisko = document.getElementById("Surname");
+    var inputPlec = document.getElementById("Gender");
+    var inputDataUr = document.getElementById("DateOfBrith");
+    window.onload = function LoadDataUser() {
+        inputLogin.value = @Html.Raw(Json.Serialize(TempData["UserName"]));
+        inputEmail.value = @Html.Raw(Json.Serialize(TempData["Email"]));
+        inputTel.value = @Html.Raw(Json.Serialize(TempData["PhoneNumber"]));
+        inputImie.value = @Html.Raw(Json.Serialize(TempData["Name"]));
+        inputNazwisko.value = @Html.Raw(Json.Serialize(TempData["Surname"]));
+        inputDataUr.value =@Html.Raw(Json.Serialize(TempData["DateOfBirth"]));
+        var g = @Html.Raw(Json.Serialize(TempData["Gender"]));
+        switch (g.trim()) {
+            case "Male":
+            inputPlec.selectedIndex = "0"; 
+            break;
+            case "Female":
+            inputPlec.selectedIndex = "1"; 
+                break;
+            case "Other":
+            inputPlec.selectedIndex = "2"; 
+                break;
+            default:
+                alert("default" + g);
+            break;
+        };
+     };
+
+
+        function EditUserButton() {
+        var url = '@Url.Content("~/")' + "DemoGrid/Edit";
+            var Id = localStorage.getItem("storageId");
+            var inputUserName = document.getElementById("UserName").value;
+            var inputEmail = document.getElementById("Email").value;
+            var inputPhoneNumber= document.getElementById("PhoneNumber").value;
+            var inputName= document.getElementById("Name").value;
+            var inputSurname= document.getElementById("Surname").value;
+            var inputGender = document.getElementById("Gender").value;
+            var inputDateOfBirth = document.getElementById("DateOfBrith").value;
+            
+
+
+        $.ajax({
+        type: 'GET',
+        url: '/AdminPanelUser/EditUserButton',
+        data: {Id:Id,inputUserName:inputUserName,inputEmail:inputEmail,inputPhoneNumber:inputPhoneNumber,inputName:inputName,inputSurname:inputSurname,inputGender:inputGender,inputDateOfBirth:inputDateOfBirth},
+        dataType: 'json',
+        success: function (data) {
+        alert('Wystąpił błąd');
+
+        },
+        error: function (error) {
+        alert('Pomyślnie zmieniono użytkownika');
+        window.location.reload();
+        }
+        });
+        };
+
+</script>
