@@ -1,34 +1,60 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Diagnostics;
+@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+
 @if (SignInManager.IsSignedIn(User))
 {
+    
+    Debug.WriteLine("Id zalogowanego użytkownika: "+UserManager.GetUserId(User));
+   
     //Przycisk Dropdown - Panel Admina, brakuje warunku na pojawianie się i ukrywanie
+        <div class="btn-group">
+            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel administracyjny</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+                <a class="dropdown-item" role="button" asp-controller="AdminPanelUser" asp-action="ShowGrid" style="display:inline" title="UserPanelAdmin">Użytkownicy</a>
+            </div>
+        </div>
+    
+
+
     <div class="btn-group">
-        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel administracyjny</a>
+        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name!</a>
         <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-            <a class="dropdown-item" role="button" asp-controller="AdminPanelUser" asp-action="ShowGrid"  style="display:inline" title="UserPanelAdmin">Użytkownicy</a>
+            <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Zarządzaj kontem</a>
+            <form class="form-inline dropdown-item " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button class="btn">Wyloguj się</button>
+            </form>
         </div>
     </div>
+}
+else
+{
+    <div class="btn-group">
+        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+            <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Register" style="display:inline">Rejestracja</a>
+            <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Login" style="display:inline">Logowanie</a>
+        </div>
+    </div>
+}
 
-        <div class="btn-group">
-            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name!</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-                <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Zarządzaj kontem</a>
-                <form class="form-inline dropdown-item " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button class="btn">Wyloguj się</button>
-                </form>
-            </div>
-        </div>
+@*<script>
+    window.onload = function CheckAdmin() {
+
+        var Id =' <%=UserManager.GetUserId(User)%> ';
+        $.ajax({
+        type: 'GET',
+        url: '/Home/CheckAdmin',
+        data: {Id:Id},
+        dataType: 'json',
+        success: function (data) {
+        },
+        error: function (error) {
         }
-        else
-        {
-        <div class="btn-group">
-            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-                <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Register" style="display:inline">Rejestracja</a>
-                <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Login" style="display:inline">Logowanie</a>
-            </div>
-        </div>
-        }
+        });
+    }
+
+</script>*@
+

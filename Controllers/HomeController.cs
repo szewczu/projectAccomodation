@@ -5,7 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Noclegi.Helpers;
 using Noclegi.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Noclegi.Controllers
 {
@@ -28,10 +33,45 @@ namespace Noclegi.Controllers
             return View();
         }
 
-      
+
+            public bool CheckAdmin(String Id)
+            {
+            int RoleId = 0;
+            using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
+               {
+
+                using (SqlCommand cmd = new SqlCommand("SELECT RoleId FROM AspNetUserRoles WHERE UserId='" + Id + "'"))
+                {
+            cmd.Connection = con;
+
+            con.Open();
+            SqlDataReader sdr = cmd.ExecuteReader();
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                            RoleId = sdr.GetInt32(0);
+                            if (RoleId == 2)
+                            {
+                                return true;
+                            }
+                        }
+            }
+            con.Close();
+        }
+
+    }
 
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    return false;
+
+}
+        
+
+
+
+
+[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
