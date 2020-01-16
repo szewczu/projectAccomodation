@@ -28,6 +28,7 @@ namespace Noclegi.Controllers
         static string GlobalSurname = " pusty global surname";
         static string GlobalGender = " pusty global gender";
         static string GlobalDateOfBirth = " pusty global dateofbirth";
+        static string GlobalRole = " pusty global role";
         private ApplicationDbContext _context;
 
         public AdminPanelUserController(ApplicationDbContext context)
@@ -45,15 +46,14 @@ namespace Noclegi.Controllers
         {
             Thread.Sleep(TimeSpan.FromSeconds(1));
             string Id = GlobalId;
-            string UserName = "", Email = "", PhoneNumber = "", Name = "", Surname = "", Gender = "", DateOfBrith = "";
+            string UserName = "", Email = "", PhoneNumber = "", Name = "", Surname = "", Gender = "", DateOfBirth = "",Role="";
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
                 
-                using (SqlCommand cmd = new SqlCommand("SELECT UserName,Email,ISNULL(PhoneNumber,' '),ISNULL(Name,' '),ISNULL(Surname,' '),Gender,ISNULL(FORMAT (DateOfBirth, 'yyyy-MM-dd'),' ') FROM AspNetUsers WHERE Id='" + Id + "'"))
+                using (SqlCommand cmd = new SqlCommand("SELECT u.UserName,u.Email,ISNULL(u.PhoneNumber,' '),ISNULL(u.Name,' '),ISNULL(u.Surname,' '),u.Gender,ISNULL(FORMAT (u.DateOfBirth, 'yyyy-MM-dd'),' '),r.Name FROM AspNetUsers u JOIN AspNetUserRoles ur ON ur.UserId=u.Id JOIN AspNetRoles r ON r.Id=ur.RoleId WHERE u.Id='" + Id + "'"))
                 {
 
                     cmd.Connection = con;
-
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     if (sdr.HasRows)
@@ -66,7 +66,9 @@ namespace Noclegi.Controllers
                             Name = sdr.GetString(3);
                             Surname = sdr.GetString(4);
                             Gender = sdr.GetString(5);
-                            DateOfBrith = sdr.GetString(6);
+                            DateOfBirth = sdr.GetString(6);
+                            Role = sdr.GetString(7);
+                            
 
 
                         }
@@ -82,7 +84,8 @@ namespace Noclegi.Controllers
             GlobalName = Name;
             GlobalSurname = Surname;
             GlobalGender = Gender;
-            GlobalDateOfBirth = DateOfBrith;
+            GlobalDateOfBirth = DateOfBirth;
+            GlobalRole = Role;
 
             TempData["UserName"] = GlobalUserName;
             TempData["Email"] = GlobalEmail;
@@ -91,6 +94,7 @@ namespace Noclegi.Controllers
             TempData["Surname"] = GlobalSurname;
             TempData["Gender"] = GlobalGender;
             TempData["DateOfBirth"] = GlobalDateOfBirth;
+            TempData["Role"] = GlobalRole;
 
 
 
@@ -108,7 +112,7 @@ namespace Noclegi.Controllers
 
         }
 
-        public void EditUserButton(string Id, string inputUserName, string inputEmail, string inputPhoneNumber, string inputName, string inputSurname, string inputGender, string inputDateOfBirth)
+        public void EditUserButton(string Id, string inputUserName, string inputEmail, string inputPhoneNumber, string inputName, string inputSurname, string inputGender, string inputDateOfBirth,string inputRole)
         {
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {

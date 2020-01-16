@@ -41,12 +41,12 @@ namespace Noclegi
             services.AddControllers()
             .AddNewtonsoftJson(options =>
             {
-            options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-             });
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    connection, b =>b.UseRowNumberForPaging()));
+                    connection, b => b.UseRowNumberForPaging()));
 
 
 
