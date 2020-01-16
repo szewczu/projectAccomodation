@@ -35,10 +35,29 @@
         {
 
             $("#example").DataTable({
-                "processing": true, // for show progress bar
-                "serverSide": true, // for process server side
-                "filter": true, // this is for disable filter (search box)
-                "orderMulti": false, // for disable multiple column at once
+                "language":
+                    {
+                    "info": "Pokaż _START_ to _END_ of _TOTAL_ rekordów",
+                    "infoEmpty":"Pokaż 0 to 0 of 0 rekordów",
+                    "processing":"Wczytywanie...",
+                    "search": "Szukaj:",
+                    "lengthMenu": "Pokaż _MENU_ rekordów",
+                    "zeroRecords": "Nie znaleziono rekordów",
+                    "paginate": {
+                        "first":      "Pierwszy",
+                        "last":       "Ostatni",
+                        "next":       "Następny",
+                        "previous":   "Poprzedni"
+                    },
+                    "aria": {
+                        "sortAscending":  ": aktywuj, aby sortować kolumny rosnąco",
+                         "sortDescending": ":  aktywuj, aby sortować kolumny malejąco"
+                    }
+                    },
+                "processing": true, 
+                "serverSide": true, 
+                "filter": true, 
+                "orderMulti": false, 
                 "ajax": {
                     "url": "/AdminPanelUser/LoadData",
                     "type": "POST",
@@ -69,6 +88,7 @@
                     },
                 ]
 
+
             });
         });
 
@@ -87,21 +107,6 @@
 
 
     function Delete(Id) {
-        @*var url = '@Url.Content("~/")' + "DemoGrid/Delete";
-
-            $.post(url, { ID: Id }, function (data)
-                {
-                    if (data)
-                    {
-                        oTable = $('#example').DataTable();
-                        oTable.draw();
-                    }
-                    else
-                    {
-                        alert("Wystąpił błąd!");
-                    }
-                });*@
-     
 
     var url = '@Url.Content("~/")' + "DemoGrid/Delete";
 
@@ -123,20 +128,14 @@
 
     function EditUser(Id) {
         localStorage.setItem("storageId", Id);
-
-    //var url = '@Url.Content("~/")' + "DemoGrid/Edit"+value;
         $.ajax({
             type: 'GET',
             url: '/AdminPanelUser/EditUser',
             data: {Id:Id},
             dataType: 'json',
             success: function (data) {
-                alert('Wystąpił błąd');
-
             },
             error: function (error) {
-                //alert('Pomyślnie usunięto użytkownika');
-
             }
         });
 
