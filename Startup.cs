@@ -48,7 +48,12 @@ namespace Noclegi
                 options.UseSqlServer(
                     connection, b => b.UseRowNumberForPaging()));
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
 
+                facebookOptions.AppId = "519255028804100";
+                facebookOptions.AppSecret = "d168251d94ae7c73aee0bb9410873e55";
+            });
 
 
         }
