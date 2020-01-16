@@ -162,7 +162,7 @@ namespace Noclegi.Areas.Announcement.Pages
             SqlConnection connection = DatabaseFunctions.CreateSqlConnection();
             connection.Open();
             string sqlSetQuery = $"INSERT INTO AspNetPicture " +
-                 $"(AdvertisementId, Picture1Bin,Picture2Bin,Picture3Bin,Picture4Bin,Picture5Bin,Picture6Bin) " +
+                 $"(AdvertisementId, Picture1Base64,Picture2Base64,Picture3Base64,Picture4Base64,Picture5Base64,Picture6Base64) " +
                  $"VALUES (@adverteismentId,@image1,@image2,@image3,@image4,@image5,@image6);";
 
             SqlCommand command = new SqlCommand(sqlSetQuery, connection);
@@ -182,7 +182,7 @@ namespace Noclegi.Areas.Announcement.Pages
 
         private static void AddParameter(string parameterName, IFormFile image1, SqlCommand command)
         {
-            command.Parameters.Add($"@{parameterName}", SqlDbType.VarBinary, -1);
+            command.Parameters.Add($"@{parameterName}", SqlDbType.VarChar, -1);
 
             if (ConvertImageToByteArray(image1) != null)
                 command.Parameters[$"@{parameterName}"].Value = ConvertImageToByteArray(image1);
@@ -190,20 +190,21 @@ namespace Noclegi.Areas.Announcement.Pages
                 command.Parameters[$"@{parameterName}"].Value = DBNull.Value;
         }
 
-        private static byte[] ConvertImageToByteArray(IFormFile image)
+        private static string ConvertImageToByteArray(IFormFile image)
         {
-            byte[] imageByteArray = null;
+            string imageBase64;
             if (image == null)
             {
-                return imageByteArray;
+                return null;
             }
             using (BinaryReader br = new BinaryReader(image.OpenReadStream()))
             {
-                imageByteArray = br.ReadBytes((int)image.OpenReadStream().Length);
+                byte[] imageByteArray = br.ReadBytes((int)image.OpenReadStream().Length);
+                imageBase64 = Convert.ToBase64String(imageByteArray);
                 // Convert the image in to bytes
             }
 
-            return imageByteArray;
+            return imageBase64;
         }
     }
 }
