@@ -50,7 +50,7 @@ namespace Noclegi.Controllers
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
                 
-                using (SqlCommand cmd = new SqlCommand("SELECT u.UserName,u.Email,ISNULL(u.PhoneNumber,' '),ISNULL(u.Name,' '),ISNULL(u.Surname,' '),u.Gender,ISNULL(FORMAT (u.DateOfBirth, 'yyyy-MM-dd'),' '),r.Name FROM AspNetUsers u JOIN AspNetUserRoles ur ON ur.UserId=u.Id JOIN AspNetRoles r ON r.Id=ur.RoleId WHERE u.Id='" + Id + "'"))
+                using (SqlCommand cmd = new SqlCommand("SELECT u.UserName,u.Email,ISNULL(u.PhoneNumber,' '),ISNULL(u.Name,' '),ISNULL(u.Surname,' '),u.Gender,ISNULL(FORMAT (u.DateOfBirth, 'yyyy-MM-dd'),' '),ur.RoleId FROM AspNetUsers u JOIN AspNetUserRoles ur ON ur.UserId=u.Id WHERE u.Id='" + Id + "'"))
                 {
 
                     cmd.Connection = con;
@@ -116,7 +116,7 @@ namespace Noclegi.Controllers
         {
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("UPDATE AspNetUsers SET UserName='" + inputUserName + "',Email='" + inputEmail + "' ,PhoneNumber='" + inputPhoneNumber + "',Name='" + inputName + "',Surname='" + inputSurname + "',Gender='" + inputGender + "',DateOfBirth='" + inputDateOfBirth + "' WHERE Id='" + Id + "'"))
+                using (SqlCommand cmd = new SqlCommand("UPDATE AspNetUsers SET UserName='" + inputUserName + "',Email='" + inputEmail + "' ,PhoneNumber='" + inputPhoneNumber + "',Name='" + inputName + "',Surname='" + inputSurname + "',Gender='" + inputGender + "',DateOfBirth='" + inputDateOfBirth + "' WHERE Id='" + Id + "'; UPDATE r SET RoleId='"+inputRole+"'FROM AspNetUserRoles r WHERE UserId='"+Id+"'"))
                 {
 
                     cmd.Connection = con;

@@ -19,8 +19,8 @@
     </select><br /><br />
     Data urodzenia: <input id="DateOfBirth" type="date" class="form-control" /><br /><br />
     Rodzaj użytkownika: <select id="Role" class="form-control">
-        <option value="User">Użytkownik</option>
-        <option value="Admin">Admin</option>
+        <option value="1">Użytkownik</option>
+        <option value="2">Admin</option>
     </select><br /><br />
     <a onclick="EditUserButton()" class="btn btn-danger">Aktualizuj</a>
 
@@ -63,10 +63,10 @@
         };
 
          switch (r.trim()) {
-            case "User":
+            case "1":
             inputRole.selectedIndex = "0"; 
             break;
-            case "Admin":
+            case "2":
             inputRole.selectedIndex = "1"; 
                 break;
             default:
