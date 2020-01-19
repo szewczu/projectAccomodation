@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Noclegi.Models;
 
 namespace Noclegi.Areas.Identity.Pages.Account.Manage
 {
@@ -27,9 +28,6 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
 
-        public string Email { get; set; }
-
-        public bool IsEmailConfirmed { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -40,14 +38,13 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
         private async Task LoadAsync(IdentityUser user)
         {
             var email = await _userManager.GetEmailAsync(user);
-            Email = email;
-
+            var isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
             Input = new ManageAccountEmailInputModel
             {
+                Email = email,
                 NewEmail = email,
+                IsEmailConfirmed = isEmailConfirmed
             };
-
-            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
         }
 
         public async Task<IActionResult> OnGetAsync()

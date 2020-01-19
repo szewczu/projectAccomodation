@@ -6,16 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Noclegi.Helpers;
+using Noclegi.Models;
 
 namespace Noclegi.Areas.Announcement.Pages
 {
 
     public partial class CreateAnnouncementModel : PageModel
     {
-        public CreateAnnouncementModel()
-        {  }
         [BindProperty]
-        public AnnouncementInputModel Input { get; set; }
+      public  AnnouncementInputModel Input { get; set; }
 
         [BindProperty]
         public AnnouncementInputModel ExchangeInput { get; set; }

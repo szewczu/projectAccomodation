@@ -1,15 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Noclegi.Areas.Identity.Pages.Account.Manage
+namespace Noclegi.Models
 {
-    public partial class EmailModel
+    public class ManageAccountEmailInputModel
     {
-        public class ManageAccountEmailInputModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Nowy email")]
-            public string NewEmail { get; set; }
-        }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Nowy email")]
+        public string NewEmail { get; set; }
+
+        public string Email { get; set; }
+
+        public bool IsEmailConfirmed { get; set; }
+
     }
 }

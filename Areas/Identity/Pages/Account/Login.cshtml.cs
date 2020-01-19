@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Noclegi.Models;
 
 namespace Noclegi.Areas.Identity.Pages.Account
 {
@@ -17,11 +18,11 @@ namespace Noclegi.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogger<LoginModel> _logger;
+        private readonly ILogger<LoginInputModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
-            ILogger<LoginModel> logger,
+        public LoginModel(SignInManager<IdentityUser> signInManager,
+            ILogger<LoginInputModel> logger,
             UserManager<IdentityUser> userManager,
             IEmailSender emailSender)
         {

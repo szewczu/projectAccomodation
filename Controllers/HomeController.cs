@@ -27,45 +27,36 @@ namespace Noclegi.Controllers
             return View();
         }
 
-
-            public bool CheckAdmin(String Id)
-            {
+        public bool CheckAdmin(String Id)
+        {
             int RoleId = 0;
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
-               {
+            {
 
                 using (SqlCommand cmd = new SqlCommand("SELECT RoleId FROM AspNetUserRoles WHERE UserId='" + Id + "'"))
                 {
-            cmd.Connection = con;
+                    cmd.Connection = con;
 
-            con.Open();
-            SqlDataReader sdr = cmd.ExecuteReader();
-            if (sdr.HasRows)
-            {
-                while (sdr.Read())
-                {
+                    con.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows)
+                    {
+                        while (sdr.Read())
+                        {
                             RoleId = sdr.GetInt32(0);
                             if (RoleId == 2)
                             {
                                 return true;
                             }
                         }
+                    }
+                    con.Close();
+                }
             }
-            con.Close();
+            return false;
         }
 
-    }
-
-
-    return false;
-
-}
-        
-
-
-
-
-[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Noclegi.Helpers;
+using Noclegi.Models;
 
 namespace Noclegi.Areas.Identity.Pages.Account.Manage
 {
