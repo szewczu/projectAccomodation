@@ -1,5 +1,3 @@
-using System;
-
 namespace Noclegi.Models
 {
     public class ErrorViewModel
@@ -7,5 +5,6 @@ namespace Noclegi.Models
         public string RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
     }
 }

@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Noclegi.Models;
 using System.Linq.Dynamic.Core;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Noclegi.Data;
 using Noclegi.Helpers;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading;
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860  
 
 namespace Noclegi.Controllers
 {
@@ -29,7 +20,7 @@ namespace Noclegi.Controllers
         static string GlobalGender = " pusty global gender";
         static string GlobalDateOfBirth = " pusty global dateofbirth";
         static string GlobalRole = " pusty global role";
-        private ApplicationDbContext _context;
+        private readonly  ApplicationDbContext _context;
 
         public AdminPanelUserController(ApplicationDbContext context)
         {

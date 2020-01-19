@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -15,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace Noclegi.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class LoginModel : PageModel
+    public partial class LoginModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -34,7 +32,7 @@ namespace Noclegi.Areas.Identity.Pages.Account
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public LoginInputModel Input { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -42,20 +40,6 @@ namespace Noclegi.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-
-            [Display(Name = "Zapamiętaj mnie?")]
-            public bool RememberMe { get; set; }
-        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {

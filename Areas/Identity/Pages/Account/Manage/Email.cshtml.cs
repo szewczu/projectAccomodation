@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -36,22 +35,14 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Nowy email")]
-            public string NewEmail { get; set; }
-        }
+        public ManageAccountEmailInputModel Input { get; set; }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;
 
-            Input = new InputModel
+            Input = new ManageAccountEmailInputModel
             {
                 NewEmail = email,
             };
