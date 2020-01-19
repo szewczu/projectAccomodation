@@ -1,12 +1,29 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Diagnostics;
+@using Microsoft.AspNetCore.Identity
+@using Noclegi.Helpers
+@using Microsoft.Data.SqlClient;
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+
 @if (SignInManager.IsSignedIn(User))
 {
+
+    if (CheckAdmin()==true)
+    {
+    //Debug.WriteLine("Id zalogowanego użytkownika: " + UserManager.GetUserId(User));
+    <div class="btn-group">
+        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel administracyjny</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+            <a class="dropdown-item" role="button" asp-controller="AdminPanelUser" asp-action="ShowGrid" style="display:inline" title="UserPanelAdmin">Użytkownicy</a>
+        </div>
+    </div>
+    }
+
+
+
     <div class="btn-group">
         <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name!</a>
-
         <div class="dropdown-menu" aria-labelledby="dropdownAccount">
             <a class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" style="display:inline" title="Manage">Zarządzaj kontem</a>
             <form class="form-inline dropdown-item " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -17,11 +34,66 @@
 }
 else
 {
-<div class="btn-group">
-    <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-    <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-        <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Register" style="display:inline">Rejestracja</a>
-        <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Login" style="display:inline">Logowanie</a>
-    </div>
+    <div class="btn-group">
+        <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+            <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Register" style="display:inline">Rejestracja</a>
+            <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Login" style="display:inline">Logowanie</a>
         </div>
+    </div>
+}
+
+@{
+    bool CheckAdmin()
+    {
+        //UserManager.GetUserId(User)
+        String Id = UserManager.GetUserId(User);
+        String RoleId="0";
+        using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
+        {
+
+            using (SqlCommand cmd = new SqlCommand("SELECT RoleId FROM AspNetUserRoles WHERE UserId='" + Id + "'"))
+            {
+                cmd.Connection = con;
+
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        RoleId = sdr.GetString(0);
+                        if (RoleId == "2")
+                        {
+                            return true;
+                        }
+                    }
+                }
+                con.Close();
+            }
+
+        }
+
+
+        return false;
+
     }
+}
+@*<script>
+        window.onload = function CheckAdmin() {
+
+            var Id =' <%=UserManager.GetUserId(User)%> ';
+            $.ajax({
+            type: 'GET',
+            url: '/Home/CheckAdmin',
+            data: {Id:Id},
+            dataType: 'json',
+            success: function (data) {
+            },
+            error: function (error) {
+            }
+            });
+        }
+
+    </script>*@
+
