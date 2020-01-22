@@ -36,30 +36,34 @@
                 <div class="form-group col-md-6  rounded">
                     <div class="form-group">
                         <label asp-for="Input.Title"></label>
-                        <input asp-for="Input.Title" type="text" class="form-control"  >
+                        <input asp-for="Input.Title" type="text" class="form-control">
                         <span asp-validation-for="Input.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Description"></label>
-                        <textarea asp-for="Input.Description" type="text" class="form-control" ></textarea>
+                        <textarea asp-for="Input.Description" type="text" class="form-control"></textarea>
                         <span asp-validation-for="Input.Description" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Input.StartDate"></label>
-                        <input asp-for="Input.StartDate" type="date" class="form-control" >
-                        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Input.EndDate"></label>
-                        <input asp-for="Input.EndDate" type="date" class="form-control" >
-                        <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+                
+                    
+                    <div class="form-inline">
+                            <div class="col">
+                                <label asp-for="Input.StartDate"></label><br />
+                                <input asp-for="Input.StartDate" type="date" class="form-control">
+                                <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <label asp-for="Input.EndDate" ></label><br />
+                                <input asp-for="Input.EndDate" type="date" class="form-control">
+                                <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+                            </div>
                     </div>
 
                     <hr class="my-4">
 
                     <div class="form-group">
                         <label asp-for="Input.Price"></label>
-                        <input asp-for="Input.Price" type="number" class="form-control" >
+                        <input asp-for="Input.Price" type="number" class="form-control">
                         <span asp-validation-for="Input.Price" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -74,12 +78,12 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Floor"></label>
-                        <input asp-for="Input.Floor" type="number" class="form-control" >
+                        <input asp-for="Input.Floor" type="number" class="form-control">
                         <span asp-validation-for="Input.Floor" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Rooms"></label>
-                        <input asp-for="Input.Rooms" type="number" class="form-control" >
+                        <input asp-for="Input.Rooms" type="number" class="form-control">
                         <span asp-validation-for="Input.Rooms" class="text-danger"></span>
                     </div>
 
@@ -248,6 +252,19 @@
     </form>
 
 </div>
+
+<div class="form-inline">
+    <div class="form-group">
+        <label asp-for="Input.StartDate"></label>
+        <input asp-for="Input.StartDate" style="width:50px" type="date" class="form-control">
+        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Input.EndDate"></label>
+            <input asp-for="Input.EndDate" style="width:50px" type="date" class="form-control">
+            <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+        </div>
+    </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
