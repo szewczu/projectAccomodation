@@ -1,5 +1,3 @@
-using System;
-
 namespace Noclegi.Models
 {
     public class ErrorViewModel
