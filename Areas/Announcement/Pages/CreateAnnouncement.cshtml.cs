@@ -162,7 +162,7 @@ namespace Noclegi.Areas.Announcement.Pages
             SqlConnection connection = DatabaseFunctions.CreateSqlConnection();
             connection.Open();
             string sqlSetQuery = $"INSERT INTO AspNetPicture " +
-                 $"(AdvertisementId, Picture1Base64,Picture2Base64,Picture3Base64,Picture4Base64,Picture5Base64,Picture6Base64) " +
+                 $"(AdvertisementId, Picture1,Picture2,Picture3,Picture4,Picture5,Picture6) " +
                  $"VALUES (@adverteismentId,@image1,@image2,@image3,@image4,@image5,@image6);";
 
             SqlCommand command = new SqlCommand(sqlSetQuery, connection);
