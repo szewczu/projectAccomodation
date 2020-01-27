@@ -10,7 +10,7 @@ namespace Noclegi.Areas.Announcement.Pages
         public class AnnouncementInputModel
         {
             [Required(ErrorMessage = "Wprowadź tytuł ogłoszenia")]
-            [Display(Name = "Tytul")]
+            [Display(Name = "Tytuł")]
             public string Title { get; set; }
 
             [Display(Name = "Opis")]
@@ -18,11 +18,11 @@ namespace Noclegi.Areas.Announcement.Pages
 
             [Required(ErrorMessage = "Wprowadź datę rozpoczęcia")]
             [DataType(DataType.Date)]
-            [Display(Name = "Data Rozpoczecia")]
+            [Display(Name = "Data Rozpoczęcia")]
             public DateTime StartDate { get; set; }
 
             [Required(ErrorMessage = "Wprowadź datę zakończenia")]
-            [Display(Name = "Data Zakonczenia")]
+            [Display(Name = "Data Zakończenia")]
             [DataType(DataType.Date)]
             public DateTime EndDate { get; set; }
 
@@ -31,15 +31,15 @@ namespace Noclegi.Areas.Announcement.Pages
             public int Price { get; set; }
 
             [Required(ErrorMessage = "Wprowadź typ ogłoszenia")]
-            [Display(Name = "Typ Ogloszenia")]
+            [Display(Name = "Typ Ogłoszenia")]
             public string TypeOfAdvertisement { get; set; }
 
-            [Required(ErrorMessage = "Wprowadź rodzaj ogłoszenia")]
-            [Display(Name = "Property Type")]
+            [Required(ErrorMessage = "Wprowadź rodzaj zakwaterowania")]
+            [Display(Name = "Rodzaj zakwaterowania")]
             public string PropertyType { get; set; }
 
             [Required(ErrorMessage = "Wprowadź numer piętra")]
-            [Display(Name = "Pietro")]
+            [Display(Name = "Piętro")]
             public int Floor { get; set; }
 
             [Required(ErrorMessage = "Wprowadź liczbę pokoi")]
@@ -55,7 +55,7 @@ namespace Noclegi.Areas.Announcement.Pages
             [Display(Name = "Kod Pocztowy")]
             public string PostCode { get; set; }
 
-            [Display(Name = "Prowincja")]
+            [Display(Name = "Województwo")]
             public string Province { get; set; }
 
             [Display(Name = "Kraj")]

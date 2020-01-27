@@ -44,19 +44,18 @@
                         <textarea asp-for="Input.Description" type="text" class="form-control"></textarea>
                         <span asp-validation-for="Input.Description" class="text-danger"></span>
                     </div>
-                
-                    
-                    <div class="form-inline">
-                            <div class="col">
-                                <label asp-for="Input.StartDate"></label><br />
-                                <input asp-for="Input.StartDate" type="date" class="form-control">
-                                <span asp-validation-for="Input.StartDate" class="text-danger"></span>
-                            </div>
-                            <div class="col">
-                                <label asp-for="Input.EndDate" ></label><br />
-                                <input asp-for="Input.EndDate" type="date" class="form-control">
-                                <span asp-validation-for="Input.EndDate" class="text-danger"></span>
-                            </div>
+
+
+
+                    <div class="form-group">
+                        <label asp-for="Input.StartDate"></label><br /> 
+                        <input asp-for="Input.StartDate" id="startDate" type="date" class="form-control">
+                        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.EndDate"></label><br />
+                        <input asp-for="Input.EndDate" id="endDate" type="date" class="form-control">
+                        <span asp-validation-for="Input.EndDate" class="text-danger"></span>
                     </div>
 
                     <hr class="my-4">
@@ -88,16 +87,16 @@
                     </div>
 
                 </div>
-                <div class="form-group col-md-6" id="panelVisibility" style="display:none" >
+                <div class="form-group col-md-6" id="panelVisibility" style="display:none">
 
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Title" id="ExchangeTitle"></label>
-                        <input asp-for="ExchangeInput.Title" type="text" id="ExchangeTitle" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.Title" type="text" id="ExchangeTitle" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Description" id="ExchangeDescription"></label>
-                        <textarea asp-for="ExchangeInput.Description" type="text" id="ExchangeDescription" class="form-control"  disabled></textarea>
+                        <textarea asp-for="ExchangeInput.Description" type="text" id="ExchangeDescription" class="form-control" disabled></textarea>
                         <span asp-validation-for="ExchangeInput.Description" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -107,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.EndDate" id="ExchangeEndDate"></label>
-                        <input asp-for="ExchangeInput.EndDate" type="date" id="ExchangeEndDate" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.EndDate" type="date" id="ExchangeEndDate" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.EndDate" class="text-danger"></span>
                     </div>
 
@@ -115,7 +114,7 @@
 
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Price" id="ExchangePrice"></label>
-                        <input asp-for="ExchangeInput.Price" type="number" id="ExchangePrice" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.Price" type="number" id="ExchangePrice" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.Price" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -130,12 +129,12 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Floor" id="ExchangeFloor"></label>
-                        <input asp-for="ExchangeInput.Floor" type="number" id="ExchangeFloor" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.Floor" type="number" id="ExchangeFloor" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.Floor" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Rooms" id="ExchangeRooms"></label>
-                        <input asp-for="ExchangeInput.Rooms" type="number" id="ExchangeRooms" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.Rooms" type="number" id="ExchangeRooms" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.Rooms" class="text-danger"></span>
                     </div>
                 </div>
@@ -159,39 +158,39 @@
                 <div class="form-group col-md-6">
                     <div class="form-group">
                         <label asp-for="Input.Street"></label>
-                        <input asp-for="Input.Street" type="text" class="form-control" >
+                        <input asp-for="Input.Street" type="text" class="form-control">
                         <span asp-validation-for="Input.Street" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.City"></label>
-                        <input asp-for="Input.City" type="text" class="form-control" >
+                        <input asp-for="Input.City" type="text" class="form-control">
                         <span asp-validation-for="Input.City" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.PostCode"></label>
-                        <input asp-for="Input.PostCode" type="text" class="form-control" >
+                        <input asp-for="Input.PostCode" type="text" class="form-control">
                         <span asp-validation-for="Input.PostCode" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Province"></label>
-                        <input asp-for="Input.Province" type="text" class="form-control" >
+                        <input asp-for="Input.Province" type="text" class="form-control">
                         <span asp-validation-for="Input.Province" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Country"></label>
-                        <input asp-for="Input.Country" type="text" class="form-control" >
+                        <input asp-for="Input.Country" type="text" class="form-control">
                         <span asp-validation-for="Input.Country" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group col-md-6" id="adresVisibility" style="display:none" >
+                <div class="form-group col-md-6" id="adresVisibility" style="display:none">
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Street" id="ExchangeStreet"></label>
-                        <input asp-for="ExchangeInput.Street" type="text" id="ExchangeStreet" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.Street" type="text" id="ExchangeStreet" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.Street" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.City" id="ExchangeCity"></label>
-                        <input asp-for="ExchangeInput.City" type="text" id="ExchangeCity" class="form-control"  disabled>
+                        <input asp-for="ExchangeInput.City" type="text" id="ExchangeCity" class="form-control" disabled>
                         <span asp-validation-for="ExchangeInput.City" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -214,37 +213,38 @@
             </div>
         </div>
 
-        <div class="text-left">
-            <h4>Dodaj zdjęcia</h4>
-        </div>
 
 
 
-
-        <div class="form-group" class="row">
-            <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg">>
+        <div style="display:inline" id="imagesVisibility">
+            <div class="text-left">
+                <h4>Dodaj zdjęcia</h4>
+            </div>
+            <div class="form-group" class="row">
+                <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg"
+                       >
+            </div>
+            <div class="form-group" class="row">
+                <input asp-for="Input.Picture2Bin" type="file" accept="image/png, image/jpeg">
+                <span asp-validation-for="Input.Picture2Bin" class="text-danger"></span>
+            </div>
+            <div class="form-group" class="row">
+                <input asp-for="Input.Picture3Bin" type="file" accept="image/png, image/jpeg">
+                <span asp-validation-for="Input.Picture3Bin" class="text-danger"></span>
+            </div>
+            <div class="form-group" class="row">
+                <input asp-for="Input.Picture4Bin" type="file" accept="image/png, image/jpeg">
+                <span asp-validation-for="Input.Picture4Bin" class="text-danger"></span>
+            </div>
+            <div class="form-group" class="row">
+                <input asp-for="Input.Picture5Bin" type="file" accept="image/png, image/jpeg">
+                <span asp-validation-for="Input.Picture5Bin" class="text-danger"></span>
+            </div>
+            <div class="form-group" class="row">
+                <input asp-for="Input.Picture6Bin" type="file" accept="image/png, image/jpeg">
+                <span asp-validation-for="Input.Picture6Bin" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group" class="row">
-            <input asp-for="Input.Picture2Bin" type="file" accept="image/png, image/jpeg">>
-            <span asp-validation-for="Input.Picture2Bin" class="text-danger"></span>
-        </div>
-        <div class="form-group" class="row">
-            <input asp-for="Input.Picture3Bin" type="file" accept="image/png, image/jpeg">>
-            <span asp-validation-for="Input.Picture3Bin" class="text-danger"></span>
-        </div>
-        <div class="form-group" class="row">
-            <input asp-for="Input.Picture4Bin" type="file" accept="image/png, image/jpeg">>
-            <span asp-validation-for="Input.Picture4Bin" class="text-danger"></span>
-        </div>
-        <div class="form-group" class="row">
-            <input asp-for="Input.Picture5Bin" type="file" accept="image/png, image/jpeg">>
-            <span asp-validation-for="Input.Picture5Bin" class="text-danger"></span>
-        </div>
-        <div class="form-group" class="row">
-            <input asp-for="Input.Picture6Bin" type="file" accept="image/png, image/jpeg">>
-            <span asp-validation-for="Input.Picture6Bin" class="text-danger"></span>
-        </div>
-
 
         <button id="create-announcement-button" type="submit" class="btn btn-primary">Zapisz</button>
 
@@ -253,18 +253,6 @@
 
 </div>
 
-<div class="form-inline">
-    <div class="form-group">
-        <label asp-for="Input.StartDate"></label>
-        <input asp-for="Input.StartDate" style="width:50px" type="date" class="form-control">
-        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.EndDate"></label>
-            <input asp-for="Input.EndDate" style="width:50px" type="date" class="form-control">
-            <span asp-validation-for="Input.EndDate" class="text-danger"></span>
-        </div>
-    </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
@@ -277,12 +265,13 @@
         select.addEventListener("change", function () {
 
 
-            if (select.value != "Exchange") {
+            if (select.value == "Rent") {
                 document.querySelector('div[id="panelVisibility"]').style = "display:none";
                 document.querySelector('div[id="adresVisibility"]').style = "display:none";
+                document.querySelector('div[id="imagesVisibility"]').style = "display:inline";
 
-                
-                
+
+
                 document.querySelector('input[id="ExchangeTitle"]').disabled = true;
                 document.querySelector('textarea[id="ExchangeDescription"]').disabled = true;
                 document.querySelector('input[id="ExchangeStartDate"]').disabled = true;
@@ -297,9 +286,10 @@
                 document.querySelector('input[id="ExchangeProvince"]').disabled = true;
                 document.querySelector('input[id="ExchangeCountry"]').disabled = true;
             }
-            else {
+            else if (select.value == "Exchange") {
                 document.querySelector('div[id="panelVisibility"]').style = "display:inline";
                 document.querySelector('div[id="adresVisibility"]').style = "display:inline";
+                document.querySelector('div[id="imagesVisibility"]').style = "display:inline";
 
                 document.querySelector('input[id="ExchangeTitle"]').disabled = false;
                 document.querySelector('textarea[id="ExchangeDescription"]').disabled = false;
@@ -315,6 +305,56 @@
                 document.querySelector('input[id="ExchangeProvince"]').disabled = false;
                 document.querySelector('input[id="ExchangeCountry"]').disabled = false;
             }
+            else {
+                document.querySelector('div[id="panelVisibility"]').style = "display:none";
+                document.querySelector('div[id="adresVisibility"]').style = "display:none";
+                document.querySelector('div[id="imagesVisibility"]').style = "display:none";
+
+
+
+                document.querySelector('input[id="ExchangeTitle"]').disabled = true;
+                document.querySelector('textarea[id="ExchangeDescription"]').disabled = true;
+                document.querySelector('input[id="ExchangeStartDate"]').disabled = true;
+                document.querySelector('input[id="ExchangeEndDate"]').disabled = true;
+                document.querySelector('input[id="ExchangePrice"]').disabled = true;
+                document.querySelector('select[id="ExchangePropertyType"]').disabled = true;
+                document.querySelector('input[id="ExchangeFloor"]').disabled = true;
+                document.querySelector('input[id="ExchangeRooms"]').disabled = true;
+                document.querySelector('input[id="ExchangeStreet"]').disabled = true;
+                document.querySelector('input[id="ExchangeCity"]').disabled = true;
+                document.querySelector('input[id="ExchangePostCode"]').disabled = true;
+                document.querySelector('input[id="ExchangeProvince"]').disabled = true;
+                document.querySelector('input[id="ExchangeCountry"]').disabled = true;
+            }
         });
     </script>
+
+
+    <script language="javascript">
+
+        
+        const input = document.getElementById('startDate');
+        const input2 = document.getElementById('endDate');
+
+
+
+        document.getElementById('create-announcement-button')
+            .addEventListener("click", function () {
+
+                const input3 = document.querySelector('input[id="ExchangeStartDate"]');
+                const input4 = document.querySelector('input[id="ExchangeEndDate"]');
+
+
+                if (input.value > input2.value) {
+                    alert("data zakończenia nie może być wcześniej niż data rozpoczęcia");
+                } 
+
+                if (input3.value > input4.value) {
+                    alert("data zakończenia nie może być wcześniej niż data rozpoczęcia");
+                } 
+
+            
+        });
+    </script>
+
 }
