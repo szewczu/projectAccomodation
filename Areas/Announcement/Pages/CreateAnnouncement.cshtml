@@ -15,7 +15,7 @@
 
 
 
-<div class="container shadow-lg">
+<div class="container shadow-lg" >
 
     <form id="Announcement-form" method="post" enctype="multipart/form-data">
 
@@ -36,7 +36,7 @@
                 <div class="form-group col-md-6  rounded">
                     <div class="form-group">
                         <label asp-for="Input.Title"></label>
-                        <input asp-for="Input.Title" type="text" class="form-control">
+                        <input asp-for="Input.Title" id="1" type="text" class="form-control">
                         <span asp-validation-for="Input.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -48,7 +48,7 @@
 
 
                     <div class="form-group">
-                        <label asp-for="Input.StartDate"></label><br /> 
+                        <label asp-for="Input.StartDate"></label><br />
                         <input asp-for="Input.StartDate" id="startDate" type="date" class="form-control">
                         <span asp-validation-for="Input.StartDate" class="text-danger"></span>
                     </div>
@@ -87,26 +87,26 @@
                     </div>
 
                 </div>
-                <div class="form-group col-md-6" id="panelVisibility" style="display:none">
+                <div class="form-group col-md-6" id="panelVisibility" >
 
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Title" id="ExchangeTitle"></label>
-                        <input asp-for="ExchangeInput.Title" type="text" id="ExchangeTitle" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Title" type="text" id="ExchangeTitle" class="form-control">
                         <span asp-validation-for="ExchangeInput.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Description" id="ExchangeDescription"></label>
-                        <textarea asp-for="ExchangeInput.Description" type="text" id="ExchangeDescription" class="form-control" disabled></textarea>
+                        <textarea asp-for="ExchangeInput.Description" type="text" id="ExchangeDescription" class="form-control"></textarea>
                         <span asp-validation-for="ExchangeInput.Description" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.StartDate" id="ExchangeStartDate"></label>
-                        <input asp-for="ExchangeInput.StartDate" type="date" id="ExchangeStartDate" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.StartDate" type="date" id="ExchangeStartDate" class="form-control">
                         <span asp-validation-for="ExchangeInput.StartDate" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.EndDate" id="ExchangeEndDate"></label>
-                        <input asp-for="ExchangeInput.EndDate" type="date" id="ExchangeEndDate" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.EndDate" type="date" id="ExchangeEndDate" class="form-control">
                         <span asp-validation-for="ExchangeInput.EndDate" class="text-danger"></span>
                     </div>
 
@@ -114,12 +114,12 @@
 
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Price" id="ExchangePrice"></label>
-                        <input asp-for="ExchangeInput.Price" type="number" id="ExchangePrice" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Price" type="number" id="ExchangePrice" class="form-control">
                         <span asp-validation-for="ExchangeInput.Price" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.PropertyType" id="ExchangePropertyType"></label>
-                        <select class="custom-select" asp-for="ExchangeInput.PropertyType" id="ExchangePropertyType" disabled>
+                        <select class="custom-select" asp-for="ExchangeInput.PropertyType" id="ExchangePropertyType">
                             <option value="Apartment" selected>Apartament</option>
                             <option value="House">Dom</option>
                             <option value="Building">Budynek</option>
@@ -129,12 +129,12 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Floor" id="ExchangeFloor"></label>
-                        <input asp-for="ExchangeInput.Floor" type="number" id="ExchangeFloor" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Floor" type="number" id="ExchangeFloor" class="form-control">
                         <span asp-validation-for="ExchangeInput.Floor" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Rooms" id="ExchangeRooms"></label>
-                        <input asp-for="ExchangeInput.Rooms" type="number" id="ExchangeRooms" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Rooms" type="number" id="ExchangeRooms" class="form-control">
                         <span asp-validation-for="ExchangeInput.Rooms" class="text-danger"></span>
                     </div>
                 </div>
@@ -158,54 +158,54 @@
                 <div class="form-group col-md-6">
                     <div class="form-group">
                         <label asp-for="Input.Street"></label>
-                        <input asp-for="Input.Street" type="text" class="form-control">
+                        <input asp-for="Input.Street" type="text" id="Street" class="form-control">
                         <span asp-validation-for="Input.Street" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.City"></label>
-                        <input asp-for="Input.City" type="text" class="form-control">
+                        <input asp-for="Input.City" type="text" id="City" class="form-control">
                         <span asp-validation-for="Input.City" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.PostCode"></label>
-                        <input asp-for="Input.PostCode" type="text" class="form-control">
+                        <input asp-for="Input.PostCode" type="text" id="PostCode" class="form-control">
                         <span asp-validation-for="Input.PostCode" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Province"></label>
-                        <input asp-for="Input.Province" type="text" class="form-control">
+                        <input asp-for="Input.Province" type="text" id="Province" class="form-control">
                         <span asp-validation-for="Input.Province" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Country"></label>
-                        <input asp-for="Input.Country" type="text" class="form-control">
+                        <input asp-for="Input.Country" type="text" id="Country" class="form-control">
                         <span asp-validation-for="Input.Country" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group col-md-6" id="adresVisibility" style="display:none">
+                <div class="form-group col-md-6" id="adresVisibility" >
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Street" id="ExchangeStreet"></label>
-                        <input asp-for="ExchangeInput.Street" type="text" id="ExchangeStreet" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Street" type="text" id="ExchangeStreet" class="form-control">
                         <span asp-validation-for="ExchangeInput.Street" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.City" id="ExchangeCity"></label>
-                        <input asp-for="ExchangeInput.City" type="text" id="ExchangeCity" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.City" type="text" id="ExchangeCity" class="form-control">
                         <span asp-validation-for="ExchangeInput.City" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.PostCode" id="ExchangePostCode"></label>
-                        <input asp-for="ExchangeInput.PostCode" type="text" id="ExchangePostCode" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.PostCode" type="text" id="ExchangePostCode" class="form-control">
                         <span asp-validation-for="ExchangeInput.PostCode" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Province" id="ExchangeProvince"></label>
-                        <input asp-for="ExchangeInput.Province" type="text" id="ExchangeProvince" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Province" type="text" id="ExchangeProvince" class="form-control">
                         <span asp-validation-for="ExchangeInput.Province" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ExchangeInput.Country" id="ExchangeCountry"></label>
-                        <input asp-for="ExchangeInput.Country" type="text" id="ExchangeCountry" class="form-control" disabled>
+                        <input asp-for="ExchangeInput.Country" type="text" id="ExchangeCountry" class="form-control">
                         <span asp-validation-for="ExchangeInput.Country" class="text-danger"></span>
                     </div>
                 </div>
@@ -216,13 +216,12 @@
 
 
 
-        <div style="display:inline" id="imagesVisibility">
+        <div id="imagesVisibility">
             <div class="text-left">
                 <h4>Dodaj zdjęcia</h4>
             </div>
             <div class="form-group" class="row">
-                <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg"
-                       >
+                <input asp-for="Input.Picture1Bin" type="file" accept="image/png, image/jpeg">
             </div>
             <div class="form-group" class="row">
                 <input asp-for="Input.Picture2Bin" type="file" accept="image/png, image/jpeg">
@@ -247,7 +246,6 @@
         </div>
 
         <button id="create-announcement-button" type="submit" class="btn btn-primary">Zapisz</button>
-
 
     </form>
 
@@ -336,7 +334,13 @@
         const input = document.getElementById('startDate');
         const input2 = document.getElementById('endDate');
 
+        const inputStreet = document.getElementById('Street');
+        const inputCity = document.getElementById('City');
+        const inputPostCode = document.getElementById('PostCode');
+        const inputProvince = document.getElementById('Province');
+        const inputCountry = document.getElementById('Country');
 
+        counter = 0;
 
         document.getElementById('create-announcement-button')
             .addEventListener("click", function () {
@@ -353,8 +357,91 @@
                     alert("data zakończenia nie może być wcześniej niż data rozpoczęcia");
                 } 
 
+                if (select.value == "Rent") {
+                    if (inputStreet.value == '' || inputCity.value == '' || inputPostCode.value == '' || inputProvince.value == '' || inputCountry.value == '')
+                        counter++;
+                    
+                    if (counter>0)
+                    {
+                        alert("Podaj pełny adres");
+                    }
+                }
             
         });
     </script>
 
+    <script type="text/javascript">
+
+
+        window.addEventListener('load', (event) => {
+
+            
+
+            if (select.value == "Rent") {
+                document.querySelector('div[id="panelVisibility"]').style = "display:none";
+                document.querySelector('div[id="adresVisibility"]').style = "display:none";
+                document.querySelector('div[id="imagesVisibility"]').style = "display:inline";
+
+
+
+                document.querySelector('input[id="ExchangeTitle"]').disabled = true;
+                document.querySelector('textarea[id="ExchangeDescription"]').disabled = true;
+                document.querySelector('input[id="ExchangeStartDate"]').disabled = true;
+                document.querySelector('input[id="ExchangeEndDate"]').disabled = true;
+                document.querySelector('input[id="ExchangePrice"]').disabled = true;
+                document.querySelector('select[id="ExchangePropertyType"]').disabled = true;
+                document.querySelector('input[id="ExchangeFloor"]').disabled = true;
+                document.querySelector('input[id="ExchangeRooms"]').disabled = true;
+                document.querySelector('input[id="ExchangeStreet"]').disabled = true;
+                document.querySelector('input[id="ExchangeCity"]').disabled = true;
+                document.querySelector('input[id="ExchangePostCode"]').disabled = true;
+                document.querySelector('input[id="ExchangeProvince"]').disabled = true;
+                document.querySelector('input[id="ExchangeCountry"]').disabled = true;
+            }
+            else if (select.value == "Exchange") {
+                document.querySelector('div[id="panelVisibility"]').style = "display:inline";
+                document.querySelector('div[id="adresVisibility"]').style = "display:inline";
+                document.querySelector('div[id="imagesVisibility"]').style = "display:inline";
+
+                document.querySelector('input[id="ExchangeTitle"]').disabled = false;
+                document.querySelector('textarea[id="ExchangeDescription"]').disabled = false;
+                document.querySelector('input[id="ExchangeStartDate"]').disabled = false;
+                document.querySelector('input[id="ExchangeEndDate"]').disabled = false;
+                document.querySelector('input[id="ExchangePrice"]').disabled = false;
+                document.querySelector('select[id="ExchangePropertyType"]').disabled = false;
+                document.querySelector('input[id="ExchangeFloor"]').disabled = false;
+                document.querySelector('input[id="ExchangeRooms"]').disabled = false;
+                document.querySelector('input[id="ExchangeStreet"]').disabled = false;
+                document.querySelector('input[id="ExchangeCity"]').disabled = false;
+                document.querySelector('input[id="ExchangePostCode"]').disabled = false;
+                document.querySelector('input[id="ExchangeProvince"]').disabled = false;
+                document.querySelector('input[id="ExchangeCountry"]').disabled = false;
+            }
+            else {
+                document.querySelector('div[id="panelVisibility"]').style = "display:none";
+                document.querySelector('div[id="adresVisibility"]').style = "display:none";
+                document.querySelector('div[id="imagesVisibility"]').style = "display:none";
+
+
+
+                document.querySelector('input[id="ExchangeTitle"]').disabled = true;
+                document.querySelector('textarea[id="ExchangeDescription"]').disabled = true;
+                document.querySelector('input[id="ExchangeStartDate"]').disabled = true;
+                document.querySelector('input[id="ExchangeEndDate"]').disabled = true;
+                document.querySelector('input[id="ExchangePrice"]').disabled = true;
+                document.querySelector('select[id="ExchangePropertyType"]').disabled = true;
+                document.querySelector('input[id="ExchangeFloor"]').disabled = true;
+                document.querySelector('input[id="ExchangeRooms"]').disabled = true;
+                document.querySelector('input[id="ExchangeStreet"]').disabled = true;
+                document.querySelector('input[id="ExchangeCity"]').disabled = true;
+                document.querySelector('input[id="ExchangePostCode"]').disabled = true;
+                document.querySelector('input[id="ExchangeProvince"]').disabled = true;
+                document.querySelector('input[id="ExchangeCountry"]').disabled = true;
+            }
+        });
+
+    </script>
+
 }
+
+ 
