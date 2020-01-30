@@ -1,0 +1,110 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<h1>Edytowanie Ogłoszenia</h1>
+<h2>Yolo</h2>
+<form class="col-md-6">
+    <br />
+    Login: <input id="UserName" type="text" class="form-control"  /><br />
+    Email: <input id="Email" type="email" class="form-control"  /><br /><br />
+    Numer telefonu: <input id="PhoneNumber" type="text" class="form-control"  /><br />
+    Imie: <input id="Name" type="text" class="form-control"  /><br />
+    Nazwisko: <input id="Surname" type="text" class="form-control"  /><br />
+    Płeć: <select id="Gender" class="form-control">
+        <option value="Male">Mężyczyzna</option>
+        <option value="Female">Kobieta</option>
+        <option value="Other">Nieokreślona</option>
+    </select><br />
+    Data urodzenia: <input id="DateOfBirth" type="date" class="form-control" /><br />
+    Rodzaj użytkownika: <select id="Role" class="form-control">
+        <option value="1">Użytkownik</option>
+        <option value="2">Admin</option>
+    </select><br /><br />
+    <a onclick="EditUserButton()" class="btn btn-danger">Aktualizuj</a>
+
+</form>
+
+
+
+<script>
+
+    var inputLogin = document.getElementById("UserName");
+    var inputEmail = document.getElementById("Email");
+    var inputTel = document.getElementById("PhoneNumber");
+    var inputImie = document.getElementById("Name");
+    var inputNazwisko = document.getElementById("Surname");
+    var inputPlec = document.getElementById("Gender");
+    var inputDataUr = document.getElementById("DateOfBirth");
+    var inputRole= document.getElementById("Role");
+    window.onload = function LoadDataUser() {
+        inputLogin.value = @Html.Raw(Json.Serialize(TempData["UserName"]));
+        inputEmail.value = @Html.Raw(Json.Serialize(TempData["Email"]));
+        inputTel.value = @Html.Raw(Json.Serialize(TempData["PhoneNumber"]));
+        inputImie.value = @Html.Raw(Json.Serialize(TempData["Name"]));
+        inputNazwisko.value = @Html.Raw(Json.Serialize(TempData["Surname"]));
+        inputDataUr.value =@Html.Raw(Json.Serialize(TempData["DateOfBirth"]));
+        var g = @Html.Raw(Json.Serialize(TempData["Gender"]));
+        var r = @Html.Raw(Json.Serialize(TempData["Role"]));
+        switch (g.trim()) {
+            case "Male":
+            inputPlec.selectedIndex = "0"; 
+            break;
+            case "Female":
+            inputPlec.selectedIndex = "1"; 
+                break;
+            case "Other":
+            inputPlec.selectedIndex = "2"; 
+                break;
+            default:
+            inputPlec.selectedIndex = "2"; 
+            break;
+        };
+
+         switch (r.trim()) {
+            case "1":
+            inputRole.selectedIndex = "0"; 
+            break;
+            case "2":
+            inputRole.selectedIndex = "1"; 
+                break;
+            default:
+            inputRole.selectedIndex = "0"; 
+            break;
+        };
+     };
+
+
+        function EditUserButton() {
+        var url = '@Url.Content("~/")' + "DemoGrid/Edit"; //---------------------------WTF????????????
+            var Id = localStorage.getItem("storageId");
+            var inputUserName = document.getElementById("UserName").value;
+            var inputEmail = document.getElementById("Email").value;
+            var inputPhoneNumber= document.getElementById("PhoneNumber").value;
+            var inputName= document.getElementById("Name").value;
+            var inputSurname= document.getElementById("Surname").value;
+            var inputGender = document.getElementById("Gender").value;
+            var inputDateOfBirth = document.getElementById("DateOfBirth").value;
+            var inputRole = document.getElementById("Role").value;
+            
+            
+
+        $.ajax({
+        type: 'GET',
+        url: '/AdminPanelAdvertisement/EditUserButton',
+        data: {Id:Id,inputUserName:inputUserName,inputEmail:inputEmail,inputPhoneNumber:inputPhoneNumber,inputName:inputName,inputSurname:inputSurname,inputGender:inputGender,inputDateOfBirth:inputDateOfBirth,inputRole:inputRole},
+        dataType: 'json',
+        success: function (data) {
+        alert('Wystąpił błąd');
+
+        },
+        error: function (error) {
+        alert('Pomyślnie zmieniono użytkownika');
+        window.location.reload();
+        }
+        });
+        };
+
+</script>
