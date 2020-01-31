@@ -8,11 +8,12 @@
 <h2>Yolo</h2>
 <form class="col-md-6">
     <br />
-    Login: <input id="UserName" type="text" class="form-control"  /><br />
-    Email: <input id="Email" type="email" class="form-control"  /><br /><br />
-    Numer telefonu: <input id="PhoneNumber" type="text" class="form-control"  /><br />
-    Imie: <input id="Name" type="text" class="form-control"  /><br />
-    Nazwisko: <input id="Surname" type="text" class="form-control"  /><br />
+    Id: <input id="Id" type="number" class="form-control" /><br />
+    Login: <input id="UserName" type="text" class="form-control" /><br />
+    Email: <input id="Email" type="email" class="form-control" /><br /><br />
+    Numer telefonu: <input id="PhoneNumber" type="text" class="form-control" /><br />
+    Imie: <input id="Name" type="text" class="form-control" /><br />
+    Nazwisko: <input id="Surname" type="text" class="form-control" /><br />
     Płeć: <select id="Gender" class="form-control">
         <option value="Male">Mężyczyzna</option>
         <option value="Female">Kobieta</option>
@@ -30,7 +31,7 @@
 
 
 <script>
-
+    var inputId = document.getElementById("Id");
     var inputLogin = document.getElementById("UserName");
     var inputEmail = document.getElementById("Email");
     var inputTel = document.getElementById("PhoneNumber");
@@ -40,6 +41,7 @@
     var inputDataUr = document.getElementById("DateOfBirth");
     var inputRole= document.getElementById("Role");
     window.onload = function LoadDataUser() {
+        inputId.value = @Html.Raw(Json.Serialize(TempData["Id"]));
         inputLogin.value = @Html.Raw(Json.Serialize(TempData["UserName"]));
         inputEmail.value = @Html.Raw(Json.Serialize(TempData["Email"]));
         inputTel.value = @Html.Raw(Json.Serialize(TempData["PhoneNumber"]));

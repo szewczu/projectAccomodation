@@ -29,9 +29,7 @@ namespace Noclegi.Controllers
         // GET: /<controller>/  
         public IActionResult ShowAdvertisement()
         {
-
             return View();
-
         }
         public IActionResult ShowEditAdvertisement()
         {
@@ -40,10 +38,8 @@ namespace Noclegi.Controllers
             string UserName = "", Email = "", PhoneNumber = "", Name = "", Surname = "", Gender = "", DateOfBirth = "",Role="";
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
-                
                 using (SqlCommand cmd = new SqlCommand("SELECT u.UserName,u.Email,ISNULL(u.PhoneNumber,' '),ISNULL(u.Name,' '),ISNULL(u.Surname,' '),u.Gender,ISNULL(FORMAT (u.DateOfBirth, 'yyyy-MM-dd'),' '),ur.RoleId FROM AspNetUsers u JOIN AspNetUserRoles ur ON ur.UserId=u.Id WHERE u.Id='" + Id + "'"))
                 {
-
                     cmd.Connection = con;
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -59,16 +55,12 @@ namespace Noclegi.Controllers
                             Gender = sdr.GetString(5);
                             DateOfBirth = sdr.GetString(6);
                             Role = sdr.GetString(7);
-                            
-
-
                         }
                     }
                     con.Close();
                 }
-
             }
-            
+            GlobalId = Id;
             GlobalUserName = UserName;
             GlobalEmail = Email;
             GlobalPhoneNumber = PhoneNumber;
@@ -78,6 +70,7 @@ namespace Noclegi.Controllers
             GlobalDateOfBirth = DateOfBirth;
             GlobalRole = Role;
 
+            TempData["Id"] = GlobalId;
             TempData["UserName"] = GlobalUserName;
             TempData["Email"] = GlobalEmail;
             TempData["PhoneNumber"] = GlobalPhoneNumber;
@@ -87,20 +80,12 @@ namespace Noclegi.Controllers
             TempData["DateOfBirth"] = GlobalDateOfBirth;
             TempData["Role"] = GlobalRole;
 
-
-
-
-
-
-
             return PartialView();
-
         }
 
         public void EditAdvertisement(string Id)
         {
             GlobalId = Id;
-
         }
 
         public void EditUserButton(string Id, string inputUserName, string inputEmail, string inputPhoneNumber, string inputName, string inputSurname, string inputGender, string inputDateOfBirth,string inputRole)
@@ -109,14 +94,12 @@ namespace Noclegi.Controllers
             {
                 using (SqlCommand cmd = new SqlCommand("UPDATE AspNetUsers SET UserName='" + inputUserName + "',Email='" + inputEmail + "' ,PhoneNumber='" + inputPhoneNumber + "',Name='" + inputName + "',Surname='" + inputSurname + "',Gender='" + inputGender + "',DateOfBirth='" + inputDateOfBirth + "' WHERE Id='" + Id + "'; UPDATE r SET RoleId='"+inputRole+"'FROM AspNetUserRoles r WHERE UserId='"+Id+"'"))
                 {
-
                     cmd.Connection = con;
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
 
                     con.Close();
                 }
-
             }
         }
 
@@ -126,17 +109,13 @@ namespace Noclegi.Controllers
             {
                 //using (SqlCommand cmd = new SqlCommand("Delete FROM AspNetUsers WHERE Id='"+Id+"'")) 
                 using (SqlCommand cmd = new SqlCommand("EXEC DELETE_USER_P @USER_ID='"+Id+"'"))
-
                 {
-
                     cmd.Connection = con;
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     con.Close();
                 }
-                
             }
-           
         }
         public IActionResult LoadData()
         {
@@ -162,10 +141,6 @@ namespace Noclegi.Controllers
                 // Getting all Customer data  
                 var customerData = (from tempcustomer in _context.UsersTB
                                     select tempcustomer);
-                
-
-
-
                 //Sorting  
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
                 {
@@ -176,26 +151,30 @@ namespace Noclegi.Controllers
                 {
                     customerData = customerData.Where(m => m.UserName == searchValue);
                 }
-
                 //total number of rows count   
                 recordsTotal = customerData.Count();
                 //Paging   
                 var data = customerData.Skip(skip).Take(pageSize).ToList();
                 //Returning Json Data  
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
-
             }
             catch (Exception)
             {
                 throw;
             }
-
         }
-
-       
-
-
+        public void DeleteAdvertisement(string Id)
+        {
+            using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("EXEC DELETE_ADVERTISEMENT_P @ADVERTISEMENT_ID='" + Id + "'"))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    con.Close();
+                }
+            }
+        }
     }
-
-
 }
