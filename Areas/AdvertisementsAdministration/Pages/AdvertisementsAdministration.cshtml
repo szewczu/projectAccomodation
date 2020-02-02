@@ -1,0 +1,84 @@
+﻿@page
+@model Noclegi.Areas.AdvertisementsAdministration.Pages.AdvertisementsAdministrationModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: 2px solid #e7e7e7;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .button:hover {
+                background-color: green;
+            }
+    </style>
+</head>
+
+<h1>Panel Administracyjny</h1>
+<h2>Ogłoszenia:</h2>
+
+<form id="form1" runat="server">
+    @Html.Raw(Model.Input.HtmlTable)
+</form>
+
+<script>
+    function DeleteData(Id)
+        {
+            if (confirm("Czy na pewno chcesz usunąć?"))
+            {
+                Delete(Id);
+            }
+            else
+            {
+                return false;
+            }
+    }
+
+    function Delete(Id) {
+
+        var url = '@Url.Content("~/")' + "Pages/Delete";
+
+        $.ajax({
+            type: 'GET',
+            url: '/AdminPanelAdvertisement/DeleteAdvertisement',
+            data: {Id:Id},
+            dataType: 'json',
+            success: function (data) {
+                alert('Wystąpił błąd');
+
+            },
+            error: function (error) {
+                alert('Pomyślnie usunięto ogłoszenie');
+                window.location.reload();
+            }
+        });
+    }
+
+    function EditAdvertisement(Id) {
+        localStorage.setItem("storageId", Id);
+
+    //var url = '@Url.Content("~/")' + "DemoGrid/Edit"+value;
+        $.ajax({
+            type: 'GET',
+            url: '/AdminPanelAdvertisement/EditAdvertisement',
+            data: {Id:Id},
+            dataType: 'json',
+            success: function (data) {
+                alert('Wystąpił błąd');
+
+            },
+            error: function (error) {
+                
+            }
+        });
+    };
+</script>
