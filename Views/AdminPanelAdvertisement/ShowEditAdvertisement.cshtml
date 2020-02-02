@@ -4,109 +4,117 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<h1>Edytowanie Ogłoszenia</h1>
-<h2>Yolo</h2>
-<form class="col-md-6">
-    <br />
-    Id: <input id="Id" type="number" class="form-control" /><br />
-    Login: <input id="UserName" type="text" class="form-control" /><br />
-    Email: <input id="Email" type="email" class="form-control" /><br /><br />
-    Numer telefonu: <input id="PhoneNumber" type="text" class="form-control" /><br />
-    Imie: <input id="Name" type="text" class="form-control" /><br />
-    Nazwisko: <input id="Surname" type="text" class="form-control" /><br />
-    Płeć: <select id="Gender" class="form-control">
-        <option value="Male">Mężyczyzna</option>
-        <option value="Female">Kobieta</option>
-        <option value="Other">Nieokreślona</option>
-    </select><br />
-    Data urodzenia: <input id="DateOfBirth" type="date" class="form-control" /><br />
-    Rodzaj użytkownika: <select id="Role" class="form-control">
-        <option value="1">Użytkownik</option>
-        <option value="2">Admin</option>
-    </select><br /><br />
-    <a onclick="EditUserButton()" class="btn btn-danger">Aktualizuj</a>
 
-</form>
+    <h1>Edytowanie Ogłoszenia</h1>
+    <form class="col-md-6">
+        <br />
+        Id: <input id="Id" disabled type="number" class="form-control" /><br />
+        Użytkownik tworzący ogłoszenie: <input id="UserName" disabled type="text" class="form-control" /><br />
+        Tytuł: <input id="Title" type="text" class="form-control" /><br /><br />
+        Opis: <input id="Description" type="text" class="form-control" /><br />
+        Data początkowa: <input id="StartDate" type="date" class="form-control" /><br />
+        Data końcowa: <input id="EndDate" type="date" class="form-control" /><br />
+        Cena: <input id="Price" type="number" class="form-control" /><br />
+        Wynajmie: <input id="Rent" disabled type="number" class="form-control" /><br />
+        Poszukuje: <input id="LookingFor" disabled type="number" class="form-control" /><br />
+        Zamieni: <input id="Exchange" disabled type="number" class="form-control" /><br />
+        Numer Id zamiany: <input id="ExchangeAdId" disabled type="text" class="form-control" /><br />
+        Data utworzenia ogłoszenia: <input id="CreateDate" disabled type="date" class="form-control" /><br />
+        Typ zabudowy: <select id="PropertyType" class="form-control">
+            <option value="House">Dom jednorodzinny</option>
+            <option value="Apartment">Mieszkanie w bloku</option>
+            <option value="Building">Mieszkanie w kamienicy</option>
+            <option value="Other">Inny typ zabudowy</option>
+        </select><br />
+        Piętro: <input id="Floor" type="number" class="form-control" /><br />
+        Liczba pokoi: <input id="Rooms" type="number" class="form-control" /><br />
+        Miasto: <input id="City" type="text" class="form-control" /><br />
+        Kraj: <input id="Country" type="text" class="form-control" /><br />
+        Kod pocztowy: <input id="Postcode" type="text" class="form-control" /><br />
+        Województwo: <input id="Province" type="text" class="form-control" /><br />
+        Ulica: <input id="Street" type="text" class="form-control" /><br /><br />
+        <a onclick="EditAdvertisementButton()" class="btn btn-danger">Aktualizuj</a>
+    </form>
+
+    <script>
+        var inputId = document.getElementById("Id");
+        var inputLogin = document.getElementById("UserName");
+        var inputTitle = document.getElementById("Title");
+        var inputDescription = document.getElementById("Description");
+        var inputStartDate = document.getElementById("StartDate");
+        var inputEndDate = document.getElementById("EndDate");
+        var inputPrice = document.getElementById("Price");
+        var inputRent = document.getElementById("Rent");
+        var inputLookingFor = document.getElementById("LookingFor");
+        var inputExchange = document.getElementById("Exchange");
+        var inputExchangeAdId = document.getElementById("ExchangeAdId");
+        var inputCreateDate = document.getElementById("CreateDate");
+        var inputPropertyType = document.getElementById("PropertyType");
+        var inputFloor = document.getElementById("Floor");
+        var inputRooms = document.getElementById("Rooms");
+        var inputCity = document.getElementById("City");
+        var inputCountry = document.getElementById("Country");
+        var inputPostcode = document.getElementById("Postcode");
+        var inputProvince = document.getElementById("Province");
+        var inputStreet = document.getElementById("Street");
+        window.onload = function LoadDataUser() {
+            inputId.value = @Html.Raw(Json.Serialize(TempData["Id"]));
+            inputLogin.value = @Html.Raw(Json.Serialize(TempData["UserName"]));
+            inputTitle.value = @Html.Raw(Json.Serialize(TempData["Title"]));
+            inputDescription.value = @Html.Raw(Json.Serialize(TempData["Description"]));
+            inputStartDate.value = @Html.Raw(Json.Serialize(TempData["StartDate"]));
+            inputEndDate.value = @Html.Raw(Json.Serialize(TempData["EndDate"]));
+            inputPrice.value = @Html.Raw(Json.Serialize(TempData["Price"]));
+            inputRent.value = @Html.Raw(Json.Serialize(TempData["Rent"]));
+            inputLookingFor.value = @Html.Raw(Json.Serialize(TempData["LookingFor"]));
+            inputExchange.value = @Html.Raw(Json.Serialize(TempData["Exchange"]));
+            inputExchangeAdId.value = @Html.Raw(Json.Serialize(TempData["ExchangeAdId"]));
+            inputCreateDate.value = @Html.Raw(Json.Serialize(TempData["CreateDate"]));
+            inputPropertyType.value = @Html.Raw(Json.Serialize(TempData["PropertyType"]));
+            inputFloor.value = @Html.Raw(Json.Serialize(TempData["Floor"]));
+            inputRooms.value = @Html.Raw(Json.Serialize(TempData["Rooms"]));
+            inputCity.value = @Html.Raw(Json.Serialize(TempData["City"]));
+            inputCountry.value = @Html.Raw(Json.Serialize(TempData["Country"]));
+            inputPostcode.value = @Html.Raw(Json.Serialize(TempData["Postcode"]));
+            inputProvince.value = @Html.Raw(Json.Serialize(TempData["Province"]));
+            inputStreet.value = @Html.Raw(Json.Serialize(TempData["Street"]));
+         };
 
 
+            function EditAdvertisementButton() {
+                var Id = localStorage.getItem("storageId");
+                var inputLogin = document.getElementById("UserName").value;
+                var inputTitle = document.getElementById("Title").value;
+                var inputDescription = document.getElementById("Description").value;
+                var inputStartDate = document.getElementById("StartDate").value;
+                var inputEndDate = document.getElementById("EndDate").value;
+                var inputPrice = document.getElementById("Price").value;
+                var inputRent = document.getElementById("Rent").value;
+                var inputLookingFor = document.getElementById("LookingFor").value;
+                var inputExchange = document.getElementById("Exchange").value;
+                var inputExchangeAdId = document.getElementById("ExchangeAdId").value;
+                var inputCreateDate = document.getElementById("CreateDate").value;
+                var inputPropertyType = document.getElementById("PropertyType").value;
+                var inputFloor = document.getElementById("Floor").value;
+                var inputRooms = document.getElementById("Rooms").value;
+                var inputCity = document.getElementById("City").value;
+                var inputCountry =document.getElementById("Country").value;
+                var inputPostcode = document.getElementById("Postcode").value;
+                var inputProvince = document.getElementById("Province").value;
+                var inputStreet = document.getElementById("Street").value;
+            $.ajax({
+            type: 'GET',
+            url: '/AdminPanelAdvertisement/EditAdvertisementButton',
+                data: { Id: Id, inputLogin: inputLogin, inputTitle: inputTitle, inputDescription: inputDescription, inputStartDate: inputStartDate, inputEndDate: inputEndDate, inputPrice: inputPrice, inputRent: inputRent, inputLookingFor: inputLookingFor, inputExchange: inputExchange, inputExchangeAdId: inputExchangeAdId, inputCreateDate, inputPropertyType: inputPropertyType, inputFloor: inputFloor, inputRooms: inputRooms, inputCity: inputCity, inputCountry: inputCountry, inputPostcode: inputPostcode, inputProvince: inputProvince, inputStreet: inputStreet},
+            dataType: 'json',
+            success: function (data) {
+            alert('Wystąpił błąd');
 
-<script>
-    var inputId = document.getElementById("Id");
-    var inputLogin = document.getElementById("UserName");
-    var inputEmail = document.getElementById("Email");
-    var inputTel = document.getElementById("PhoneNumber");
-    var inputImie = document.getElementById("Name");
-    var inputNazwisko = document.getElementById("Surname");
-    var inputPlec = document.getElementById("Gender");
-    var inputDataUr = document.getElementById("DateOfBirth");
-    var inputRole= document.getElementById("Role");
-    window.onload = function LoadDataUser() {
-        inputId.value = @Html.Raw(Json.Serialize(TempData["Id"]));
-        inputLogin.value = @Html.Raw(Json.Serialize(TempData["UserName"]));
-        inputEmail.value = @Html.Raw(Json.Serialize(TempData["Email"]));
-        inputTel.value = @Html.Raw(Json.Serialize(TempData["PhoneNumber"]));
-        inputImie.value = @Html.Raw(Json.Serialize(TempData["Name"]));
-        inputNazwisko.value = @Html.Raw(Json.Serialize(TempData["Surname"]));
-        inputDataUr.value =@Html.Raw(Json.Serialize(TempData["DateOfBirth"]));
-        var g = @Html.Raw(Json.Serialize(TempData["Gender"]));
-        var r = @Html.Raw(Json.Serialize(TempData["Role"]));
-        switch (g.trim()) {
-            case "Male":
-            inputPlec.selectedIndex = "0"; 
-            break;
-            case "Female":
-            inputPlec.selectedIndex = "1"; 
-                break;
-            case "Other":
-            inputPlec.selectedIndex = "2"; 
-                break;
-            default:
-            inputPlec.selectedIndex = "2"; 
-            break;
-        };
-
-         switch (r.trim()) {
-            case "1":
-            inputRole.selectedIndex = "0"; 
-            break;
-            case "2":
-            inputRole.selectedIndex = "1"; 
-                break;
-            default:
-            inputRole.selectedIndex = "0"; 
-            break;
-        };
-     };
-
-
-        function EditUserButton() {
-        var url = '@Url.Content("~/")' + "DemoGrid/Edit"; //---------------------------WTF????????????
-            var Id = localStorage.getItem("storageId");
-            var inputUserName = document.getElementById("UserName").value;
-            var inputEmail = document.getElementById("Email").value;
-            var inputPhoneNumber= document.getElementById("PhoneNumber").value;
-            var inputName= document.getElementById("Name").value;
-            var inputSurname= document.getElementById("Surname").value;
-            var inputGender = document.getElementById("Gender").value;
-            var inputDateOfBirth = document.getElementById("DateOfBirth").value;
-            var inputRole = document.getElementById("Role").value;
-            
-            
-
-        $.ajax({
-        type: 'GET',
-        url: '/AdminPanelAdvertisement/EditUserButton',
-        data: {Id:Id,inputUserName:inputUserName,inputEmail:inputEmail,inputPhoneNumber:inputPhoneNumber,inputName:inputName,inputSurname:inputSurname,inputGender:inputGender,inputDateOfBirth:inputDateOfBirth,inputRole:inputRole},
-        dataType: 'json',
-        success: function (data) {
-        alert('Wystąpił błąd');
-
-        },
-        error: function (error) {
-        alert('Pomyślnie zmieniono użytkownika');
-        window.location.reload();
-        }
-        });
-        };
-
-</script>
+            },
+            error: function (error) {
+            alert('Pomyślnie zmieniono dane odnośnie ogłoszenia');
+            window.location.reload();
+            }
+            });
+            };
+    </script>
