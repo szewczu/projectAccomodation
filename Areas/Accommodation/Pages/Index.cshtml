@@ -1,0 +1,53 @@
+﻿@page
+@model Noclegi.Areas.Accommodation.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+
+        .button {
+            background-color: #4CAF50;
+            border: 2px solid #e7e7e7;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .button:hover {
+                background-color: green;
+            }
+    </style>
+</head>
+
+<h1>Ogłoszenia</h1>
+
+<form id="form1" runat="server">
+    @Html.Raw(Model.Input.HtmlTable)
+</form>
+<script>
+    function GetID(Id) {
+        localStorage.setItem("storageId", Id);
+
+    //var url = '@Url.Content("~/")' + "DemoGrid/Edit"+value;
+        $.ajax({
+            type: 'GET',
+            url: '/Accommodation/GetID',
+            data: {Id:Id},
+            dataType: 'json',
+            success: function (data) {
+                alert('Wystąpił błąd');
+
+            },
+            error: function (error) {
+                //alert('przekazano parametr...');
+
+            }
+        });
+    };
+
+</script>
