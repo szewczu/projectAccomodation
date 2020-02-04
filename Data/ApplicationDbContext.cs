@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Noclegi.Model;
 
 namespace Noclegi.Data
 {
@@ -12,6 +13,8 @@ namespace Noclegi.Data
 
         }
         public DbSet<IdentityUser> UsersTB { get; set; }
-       
+        public DbSet<AspNetAdress> AspNetAdress { get; set; }
+        public DbSet<AspNetAdvertisement> AspNetAdvertisement { get; set; }      
+
     }
 }

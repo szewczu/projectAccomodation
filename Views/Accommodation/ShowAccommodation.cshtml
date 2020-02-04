@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 id="Title">Tytul</h1>
+<hr>
+<div id="zdjecie" style="width: 40%; height: 100%; margin: 0 auto; float:left;">
+    <img id="Photo" src=""/>
+</div>
+<div id="opis" style=" width: 30%; height: 100%; margin: 0 auto; float:left;">
+    <h2>Opis:</h2>
+    <p id="Description">Tu będzie opis</p>
+</div>
+<div id="glowne" style="width: 20%; height: 100%; margin: 0 auto; float:left;">
+    <p><b>Stworzone dnia: </b><a id="CreateDate"></a></p>
+    <p><b>Ważne od: </b><a id="StartDate"></a><b> do: </b><a id="EndDate"></a></p>
+    <p><b>Typ zabudowy: </b><a id="PropertyType"></a></p>    
+    <p><b>Ilosc Pięter: </b><a id="Floor"></a></p>
+    <p><b>Ilość pokoi: </b><a id="Rooms"></a></p>
+    <p><b>Cena: </b><a id="Price"></a></p>
+    <p><b>Państwo: </b><a id="Country"></a></p>
+    <p><b>Miasto: </b><a id="City"></a>,<a id="PostCode"></a></p>
+    <p><b>Ulica: </b><a id="Street"></a></p>
+    <p><b>Dodane przez: </b><a id="UserName"></a></p>
+</div>
+<div id="Buttons" style=" margin: 0 auto; clear:both;">
+    <a href="/Accommodation/Index" class="btn btn - success" role="button">Powrot</a>
+</div>
+<hr>
+
+<script>
+    var aLogin = document.getElementById("UserName");
+    var aTitle = document.getElementById("Title");
+    var aDescription = document.getElementById("Description");
+    var aCreateDate = document.getElementById("CreateDate");
+    var aStartDate = document.getElementById("StartDate");
+    var aEndDate = document.getElementById("EndDate");
+    var aPrice = document.getElementById("Price");
+    var aPropertyType = document.getElementById("PropertyType");
+    var aFloor = document.getElementById("Floor");
+    var aRooms = document.getElementById("Rooms");
+    var aCity = document.getElementById("City");
+    var aCountry = document.getElementById("Country");
+    var aPostCode = document.getElementById("PostCode");
+    var aStreet= document.getElementById("Street");
+    var Photo = document.getElementById("Photo");
+    window.onload = function LoadDataUser() {
+        aLogin.textContent = @Html.Raw(Json.Serialize(TempData["UserName"]));
+        aTitle.textContent = @Html.Raw(Json.Serialize(TempData["Title"]));
+        aDescription.textContent = @Html.Raw(Json.Serialize(TempData["Description"]));
+        aCreateDate.textContent = @Html.Raw(Json.Serialize(TempData["CreateDate"]));
+        aStartDate.textContent = @Html.Raw(Json.Serialize(TempData["StartDate"]));
+        aEndDate.textContent = @Html.Raw(Json.Serialize(TempData["EndDate"]));
+        aPrice.textContent = @Html.Raw(Json.Serialize(TempData["Price"]));
+        aPropertyType.textContent = @Html.Raw(Json.Serialize(TempData["PropertyType"]));
+        aFloor.textContent = @Html.Raw(Json.Serialize(TempData["Floor"]));
+        aRooms.textContent = @Html.Raw(Json.Serialize(TempData["Rooms"]));
+        aCity.textContent = @Html.Raw(Json.Serialize(TempData["City"]));
+        aCountry.textContent = @Html.Raw(Json.Serialize(TempData["Country"]));
+        aPostCode.textContent = @Html.Raw(Json.Serialize(TempData["PostCode"]));
+        aStreet.textContent = @Html.Raw(Json.Serialize(TempData["Street"]));
+        //Photo.setAttribute("src", "'data:image;base64, "@Html.Raw(Json.Serialize(TempData["Photo"]))"'");
+
+    };
+
+</script>
