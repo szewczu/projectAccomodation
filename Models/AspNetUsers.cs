@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Noclegi.Model
 {
@@ -8,12 +6,7 @@ namespace Noclegi.Model
     {
         public AspNetUsers()
         {
-            //AspNetAdvertisement = new HashSet<AspNetAdvertisement>();
-            //AspNetUserClaims = new HashSet<AspNetUserClaims>();
-            //AspNetUserLanguage = new HashSet<AspNetUserLanguage>();
-            //AspNetUserLogins = new HashSet<AspNetUserLogins>();
-            //AspNetUserRoles = new HashSet<AspNetUserRoles>();
-            //AspNetUserTokens = new HashSet<AspNetUserTokens>();
+
         }
 
         public string Id { get; set; }
@@ -38,11 +31,5 @@ namespace Noclegi.Model
         public DateTime CreatedDate { get; set; }
         public DateTime? LastLoginDate { get; set; }
 
-       // public virtual ICollection<AspNetAdvertisement> AspNetAdvertisement { get; set; }
-       // public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
-       // public virtual ICollection<AspNetUserLanguage> AspNetUserLanguage { get; set; }
-       // public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-       // public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
-       // public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
     }
 }

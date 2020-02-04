@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Zaloguj się";
 }
 
     <head>
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <a class="btn btn-outline-danger btn-block" id="forgot-password" asp-page="./ForgotPassword">Zapomniałeś hasła?</a>
-                                    <a class="btn btn-outline-info btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Rejestracj nowego użytkownika</a>
+                                    <a class="btn btn-outline-info btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Rejestracja nowego użytkownika</a>
                                     <!--
                                     <p>
                                         <button type="submit" asp-page-handler="SendVerificationEmail" class="btn-link" style="padding:0px;margin:0px;border:0px">Resend email confirmation</button>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-6 separator">
                         <section>
-                            <h4>External services</h4>
+                            <h4>Zewnętrzne serwisy</h4>
                             <hr />
                             @{
                                 if ((Model.ExternalLogins?.Count ?? 0) == 0)

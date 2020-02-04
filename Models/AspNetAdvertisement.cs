@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Noclegi.Model
 {
@@ -28,9 +27,6 @@ namespace Noclegi.Model
         public int? ExchangeAdId { get; set; }
 
         public virtual AspNetAdvertisement ExchangeAd { get; set; }
-        //public virtual AspNetUsers User { get; set; }
-        //public virtual AspNetAdress AspNetAdress { get; set; }
-        //public virtual AspNetPicture AspNetPicture { get; set; }
         public virtual ICollection<AspNetAdvertisement> InverseExchangeAd { get; set; }
     }
 }

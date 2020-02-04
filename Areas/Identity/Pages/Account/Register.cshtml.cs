@@ -36,9 +36,7 @@ namespace Noclegi.Areas.Identity.Pages.Account
 
         [BindProperty]
         public RegisterInputModel Input { get; set; }
-
         public string ReturnUrl { get; set; }
-
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -85,8 +83,6 @@ namespace Noclegi.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

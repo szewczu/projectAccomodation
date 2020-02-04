@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Noclegi.Model
+﻿namespace Noclegi.Model
 {
     public partial class AspNetPicture
     {

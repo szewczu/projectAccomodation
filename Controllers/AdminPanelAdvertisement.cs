@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Dynamic.Core;
 using Microsoft.Data.SqlClient;
 using Noclegi.Data;
 using Noclegi.Helpers;
@@ -11,7 +9,7 @@ namespace Noclegi.Controllers
 {
     public class AdminPanelAdvertisement : Controller
     {
-        static string GlobalId= " pusty global id";
+        static string GlobalId = " pusty global id";
         static string GlobalUserName = " pusty global username";
         static string GlobalTitle = " pusty global title";
         static string GlobalDescription = " pusty global Description";
@@ -31,7 +29,7 @@ namespace Noclegi.Controllers
         static string GlobalPostcode = " pusty global Postcode";
         static string GlobalProvince = " pusty global Province";
         static string GlobalStreet = " pusty global Street";
-        private readonly  ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public AdminPanelAdvertisement(ApplicationDbContext context)
         {
@@ -66,7 +64,7 @@ namespace Noclegi.Controllers
                             Title = sdr.GetString(1);
                             Description = sdr.GetString(2);
                             StartDate = sdr.GetString(3);
-                            EndDate = sdr.GetString(4); 
+                            EndDate = sdr.GetString(4);
                             Price = sdr.GetString(5);
                             Rent = sdr.GetString(6);
                             LookingFor = sdr.GetString(7);
@@ -126,7 +124,7 @@ namespace Noclegi.Controllers
             TempData["Country"] = GlobalCountry;
             TempData["Postcode"] = GlobalPostcode;
             TempData["Province"] = GlobalProvince;
-            TempData["Street"] = GlobalStreet; 
+            TempData["Street"] = GlobalStreet;
             return PartialView();
         }
 
@@ -136,13 +134,13 @@ namespace Noclegi.Controllers
         }
 
         public void EditAdvertisementButton(string Id, string inputUserName, string inputTitle, string inputDescription, string inputStartDate, string inputEndDate, string inputPrice, string inputRent, string inputLookingFor, string inputExchange, string inputExchangeAdId, string inputCreateDate, string inputPropertyType, string inputFloor, string inputRooms, string inputCity, string inputCountry, string inputPostcode, string inputProvince, string inputStreet)
-        {   
+        {
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("UPDATE AspNetAdvertisement SET Title='" + inputTitle + "', Description ='" + inputDescription + 
-                    "', StartDate='" + inputStartDate + "', EndDate='" + inputEndDate + "', Price='" + inputPrice + "', CreateDate='" + inputCreateDate + 
-                    "', PropertyType='" + inputPropertyType + "', Floor='" + inputFloor + "', Rooms='" + inputRooms + "'  WHERE Id='" + Id + 
-                    "'; UPDATE AspNetAdress SET City='" + inputCity + "', Country='" + inputCountry + "', Postcode='" + inputPostcode + "', Province='" + 
+                using (SqlCommand cmd = new SqlCommand("UPDATE AspNetAdvertisement SET Title='" + inputTitle + "', Description ='" + inputDescription +
+                    "', StartDate='" + inputStartDate + "', EndDate='" + inputEndDate + "', Price='" + inputPrice + "', CreateDate='" + inputCreateDate +
+                    "', PropertyType='" + inputPropertyType + "', Floor='" + inputFloor + "', Rooms='" + inputRooms + "'  WHERE Id='" + Id +
+                    "'; UPDATE AspNetAdress SET City='" + inputCity + "', Country='" + inputCountry + "', Postcode='" + inputPostcode + "', Province='" +
                     inputProvince + "', Street='" + inputStreet + "' WHERE AdvertisementId='" + Id + "'"))
                 {
                     cmd.Connection = con;

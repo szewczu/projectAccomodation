@@ -59,7 +59,6 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Numer telefonu")]
             public string PhoneNumber { get; set; }
-
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -170,8 +169,6 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-
-
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -200,7 +197,5 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             StatusMessage = "Twój profil został zaktulaizowany";
             return RedirectToPage();
         }
-
- 
     }
 }

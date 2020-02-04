@@ -22,9 +22,7 @@ namespace Noclegi.Areas.Identity.Pages.Account
         }
 
         public string Email { get; set; }
-
         public bool DisplayConfirmAccountLink { get; set; }
-
         public string EmailConfirmationUrl { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string email)
@@ -54,7 +52,6 @@ namespace Noclegi.Areas.Identity.Pages.Account
                     values: new { area = "Identity", userId = userId, code = code },
                     protocol: Request.Scheme);
             }
-
             return Page();
         }
     }

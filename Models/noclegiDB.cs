@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Noclegi.Model
 {
@@ -10,11 +8,5 @@ namespace Noclegi.Model
             : base(options)
         {
         }
-
-       // public DbSet<AspNetAdress> AspNetAdress { get; set; }
-       // public DbSet<AspNetAdvertisement> AspNetAdvertisement { get; set; }
-        //public DbSet<AspNetUsers> AspNetUsers { get; set; }
-
-       
     }
 }

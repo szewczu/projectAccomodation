@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using Noclegi.Data;
 using Noclegi.Helpers;
 
 namespace Noclegi.Areas.AdvertisementsAdministration.Pages
@@ -23,13 +18,13 @@ namespace Noclegi.Areas.AdvertisementsAdministration.Pages
 
         public void OnGet()
         {
-           var rawHtmlString =  GetData().ToString();
+            var rawHtmlString = GetData().ToString();
             Input = new TableInput
             {
                 HtmlTable = rawHtmlString
             };
         }
-            
+
         public int DeleteAdvertisement(int Id)
         {
             SqlConnection con2 = DatabaseFunctions.CreateSqlConnection();
@@ -58,11 +53,11 @@ namespace Noclegi.Areas.AdvertisementsAdministration.Pages
                 using (SqlCommand cmd = new SqlCommand("select " +
                     "ad.Id as 'Numer id:', " +
                     "us.UserName as 'Użytkownik:', ad.Title as 'Tytuł:', " +
-                    "ad.Description as 'Opis:', " + 
+                    "ad.Description as 'Opis:', " +
                     "FORMAT(ad.EndDate, 'dd-MM-yyyy') as 'Data do:', " +
                     "ad.Price as 'Cena: ', " +
                     "ad.PropertyType as 'Typ zabudowy:', " +
-                    "ads.City as 'Miasto:' " + 
+                    "ads.City as 'Miasto:' " +
                     "from AspNetAdvertisement ad " +
                     "left join AspNetUsers us on ad.UserId = us.Id " +
                     "left join AspNetAdress ads on ads.AdvertisementId = ad.Id; "))
@@ -84,7 +79,7 @@ namespace Noclegi.Areas.AdvertisementsAdministration.Pages
                             {
                                 html.Append("<th>");
                                 html.Append(sdr.GetName(i));
-                                if (sdr.GetName(i)== "Numer id:")
+                                if (sdr.GetName(i) == "Numer id:")
                                 {
                                     adId = i;
                                 }

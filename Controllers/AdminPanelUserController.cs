@@ -11,7 +11,7 @@ namespace Noclegi.Controllers
 {
     public class AdminPanelUserController : Controller
     {
-        static string GlobalId= " pusty global id";
+        static string GlobalId = " pusty global id";
         static string GlobalUserName = " pusty global username";
         static string GlobalEmail = " pusty global email";
         static string GlobalPhoneNumber = " pusty global phone";
@@ -20,30 +20,25 @@ namespace Noclegi.Controllers
         static string GlobalGender = " pusty global gender";
         static string GlobalDateOfBirth = " pusty global dateofbirth";
         static string GlobalRole = " pusty global role";
-        private readonly  ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public AdminPanelUserController(ApplicationDbContext context)
         {
             _context = context;
         }
-        // GET: /<controller>/  
         public IActionResult ShowGrid()
         {
-
             return View();
-
         }
         public IActionResult ShowEdit()
         {
             Thread.Sleep(TimeSpan.FromSeconds(1));
             string Id = GlobalId;
-            string UserName = "", Email = "", PhoneNumber = "", Name = "", Surname = "", Gender = "", DateOfBirth = "",Role="";
+            string UserName = "", Email = "", PhoneNumber = "", Name = "", Surname = "", Gender = "", DateOfBirth = "", Role = "";
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
-                
                 using (SqlCommand cmd = new SqlCommand("SELECT u.UserName,u.Email,ISNULL(u.PhoneNumber,' '),ISNULL(u.Name,' '),ISNULL(u.Surname,' '),u.Gender,ISNULL(FORMAT (u.DateOfBirth, 'yyyy-MM-dd'),' '),ur.RoleId FROM AspNetUsers u JOIN AspNetUserRoles ur ON ur.UserId=u.Id WHERE u.Id='" + Id + "'"))
                 {
-
                     cmd.Connection = con;
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -59,16 +54,12 @@ namespace Noclegi.Controllers
                             Gender = sdr.GetString(5);
                             DateOfBirth = sdr.GetString(6);
                             Role = sdr.GetString(7);
-                            
-
-
                         }
                     }
                     con.Close();
                 }
-
             }
-            
+
             GlobalUserName = UserName;
             GlobalEmail = Email;
             GlobalPhoneNumber = PhoneNumber;
@@ -87,36 +78,26 @@ namespace Noclegi.Controllers
             TempData["DateOfBirth"] = GlobalDateOfBirth;
             TempData["Role"] = GlobalRole;
 
-
-
-
-
-
-
             return PartialView();
-
         }
 
         public void EditUser(string Id)
         {
             GlobalId = Id;
-
         }
 
-        public void EditUserButton(string Id, string inputUserName, string inputEmail, string inputPhoneNumber, string inputName, string inputSurname, string inputGender, string inputDateOfBirth,string inputRole)
+        public void EditUserButton(string Id, string inputUserName, string inputEmail, string inputPhoneNumber, string inputName, string inputSurname, string inputGender, string inputDateOfBirth, string inputRole)
         {
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("UPDATE AspNetUsers SET UserName='" + inputUserName + "',Email='" + inputEmail + "' ,PhoneNumber='" + inputPhoneNumber + "',Name='" + inputName + "',Surname='" + inputSurname + "',Gender='" + inputGender + "',DateOfBirth='" + inputDateOfBirth + "' WHERE Id='" + Id + "'; UPDATE r SET RoleId='"+inputRole+"'FROM AspNetUserRoles r WHERE UserId='"+Id+"'"))
+                using (SqlCommand cmd = new SqlCommand("UPDATE AspNetUsers SET UserName='" + inputUserName + "',Email='" + inputEmail + "' ,PhoneNumber='" + inputPhoneNumber + "',Name='" + inputName + "',Surname='" + inputSurname + "',Gender='" + inputGender + "',DateOfBirth='" + inputDateOfBirth + "' WHERE Id='" + Id + "'; UPDATE r SET RoleId='" + inputRole + "'FROM AspNetUserRoles r WHERE UserId='" + Id + "'"))
                 {
-
                     cmd.Connection = con;
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
 
                     con.Close();
                 }
-
             }
         }
 
@@ -124,19 +105,14 @@ namespace Noclegi.Controllers
         {
             using (SqlConnection con = DatabaseFunctions.CreateSqlConnection())
             {
-                //using (SqlCommand cmd = new SqlCommand("Delete FROM AspNetUsers WHERE Id='"+Id+"'")) 
-                using (SqlCommand cmd = new SqlCommand("EXEC DELETE_USER_P @USER_ID='"+Id+"'"))
-
+                using (SqlCommand cmd = new SqlCommand("EXEC DELETE_USER_P @USER_ID='" + Id + "'"))
                 {
-
                     cmd.Connection = con;
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     con.Close();
                 }
-                
             }
-           
         }
         public IActionResult LoadData()
         {
@@ -162,9 +138,6 @@ namespace Noclegi.Controllers
                 // Getting all Customer data  
                 var customerData = (from tempcustomer in _context.UsersTB
                                     select tempcustomer);
-                
-
-
 
                 //Sorting  
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
@@ -189,13 +162,6 @@ namespace Noclegi.Controllers
             {
                 throw;
             }
-
         }
-
-       
-
-
     }
-
-
 }

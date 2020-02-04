@@ -1,19 +1,11 @@
-using System;
-using System.Web;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using Noclegi.Data;
 using Noclegi.Helpers;
 
 namespace Noclegi.Areas.Accommodation.Pages
 {
-
-
     public class IndexModel : PageModel
     {
         [BindProperty]
@@ -32,7 +24,6 @@ namespace Noclegi.Areas.Accommodation.Pages
                 HtmlTable = rawHtmlString
             };
         }
-
 
         public StringBuilder GetData()
         {
@@ -88,7 +79,6 @@ namespace Noclegi.Areas.Accommodation.Pages
                         html.Append("<tr>");
                         html.Append("<td style=\"width:auto; height:auto;\">");
                         html.Append("<div id=\"Img\" style=\"float: left; width:35%;height:25%;\">");
-                        //html.Append("<img src=\"https://tinyurl.com/um5qhoz\" style = \"border: 5;  width:40%; float:left;\"> ");
                         html.Append("<img src=\"data: image; base64," + sdr.GetValue(11) + "\" onError=\"this.onerror = null; this.src='https://tinyurl.com/y782eus8';\" style = \"border: 5;  width:40%;height:25%; float:left;\"> ");
                         html.Append("</div>");
                         html.Append("<div id=\"tytul\" style=\"float: left; width:20%;height:auto; margin-top:5%; margin-left:-15%; text-align:center;\">");
@@ -130,10 +120,3 @@ namespace Noclegi.Areas.Accommodation.Pages
         }
     }
 }
-
-
-
-
-
-
-

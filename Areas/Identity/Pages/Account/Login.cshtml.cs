@@ -20,7 +20,7 @@ namespace Noclegi.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             IEmailSender emailSender)
@@ -33,11 +33,8 @@ namespace Noclegi.Areas.Identity.Pages.Account
 
         [BindProperty]
         public LoginInputModel Input { get; set; }
-
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
         public string ReturnUrl { get; set; }
-
         [TempData]
         public string ErrorMessage { get; set; }
 

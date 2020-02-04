@@ -31,15 +31,13 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark disabled" asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a>
-                    </li>                     
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
-  <div id="main">@RenderBody()</div>
+    <div id="main">@RenderBody()</div>
 
 
     <footer class="border-top footer text-muted">
@@ -47,7 +45,7 @@
             &copy; 2019 - Noclegi - <a style="color:aqua" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

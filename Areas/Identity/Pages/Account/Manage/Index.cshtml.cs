@@ -21,8 +21,6 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
-
-
         [TempData]
         public string StatusMessage { get; set; }
 
@@ -91,6 +89,5 @@ namespace Noclegi.Areas.Identity.Pages.Account.Manage
             };
             return Page();
         }
-
     }
 }

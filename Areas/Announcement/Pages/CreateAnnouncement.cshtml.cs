@@ -9,11 +9,10 @@ using Noclegi.Helpers;
 
 namespace Noclegi.Areas.Announcement.Pages
 {
-
     public partial class CreateAnnouncementModel : PageModel
     {
         public CreateAnnouncementModel()
-        {  }
+        { }
         [BindProperty]
         public AnnouncementInputModel Input { get; set; }
 
@@ -30,20 +29,17 @@ namespace Noclegi.Areas.Announcement.Pages
                     return false;
             }
             return true;
-
         }
 
         public IActionResult OnPost()
         {
             if (Input.StartDate > Input.EndDate)
             {
-                //error message: error: start date should be before end date
                 return Page();
             }
 
             if (Input.StartDate < DateTime.Now)
             {
-                //error message: error: start date should be before end date
                 return Page();
             }
             string typeOfAdvertisement = Input.TypeOfAdvertisement;
@@ -68,9 +64,7 @@ namespace Noclegi.Areas.Announcement.Pages
                 CreateNewAnnouncement(userId, Input);
                 return RedirectToPage("Index");
             }
-            //should show error: address is required when selected Rent or Exchange
 
-            string message = "error: address is required when selected Rent or Exchange";
             return Page();
         }
 
@@ -94,7 +88,7 @@ namespace Noclegi.Areas.Announcement.Pages
             connection.Close();
         }
 
-        private int CreateNewAnnouncement(object userId, AnnouncementInputModel Input, int exchangeId = 0) // test.test@test.test id "476a5306-6060-4ab2-ae1b-890de13527e0"
+        private int CreateNewAnnouncement(object userId, AnnouncementInputModel Input, int exchangeId = 0) 
         {
             SqlConnection connection = DatabaseFunctions.CreateSqlConnection();
             connection.Open();
@@ -127,9 +121,7 @@ namespace Noclegi.Areas.Announcement.Pages
             }
             SqlCommand command = new SqlCommand(sqlSetQuery, connection);
             int insertedID = Convert.ToInt32(command.ExecuteScalar());
-            // command.ExecuteNonQuery();
             connection.Close();
-
 
             return insertedID;
         }
@@ -167,7 +159,7 @@ namespace Noclegi.Areas.Announcement.Pages
 
             SqlCommand command = new SqlCommand(sqlSetQuery, connection);
             command.Parameters.AddWithValue("@adverteismentId", adverteismentId);
-            //add parameter
+ 
             AddParameter("image1", image1, command);
             AddParameter("image2", image2, command);
             AddParameter("image3", image3, command);
@@ -176,7 +168,6 @@ namespace Noclegi.Areas.Announcement.Pages
             AddParameter("image6", image6, command);
 
             command.ExecuteNonQuery();
-
             connection.Close();
         }
 
@@ -201,7 +192,6 @@ namespace Noclegi.Areas.Announcement.Pages
             {
                 byte[] imageByteArray = br.ReadBytes((int)image.OpenReadStream().Length);
                 imageBase64 = Convert.ToBase64String(imageByteArray);
-                // Convert the image in to bytes
             }
 
             return imageBase64;
